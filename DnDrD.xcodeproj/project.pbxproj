@@ -7,7 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		521229021DD9118E00EC6AED /* Hero.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 521229001DD9118E00EC6AED /* Hero.cpp */; };
+		523840211DD81E5500FC8EED /* Template for gameState Methods.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 523840201DD81E5500FC8EED /* Template for gameState Methods.cpp */; };
+		5297AF6E1DD6C61E00B8C3EF /* GameMap2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5297AF6A1DD6C61E00B8C3EF /* GameMap2.cpp */; };
+		5297AF6F1DD6C61E00B8C3EF /* GameObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5297AF6C1DD6C61E00B8C3EF /* GameObject.cpp */; };
 		52ECE0431DD62FC1002C3F8E /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 52ECE0421DD62FC1002C3F8E /* main.cpp */; };
+		52ECE04C1DD62FDA002C3F8E /* SDL2_image.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52ECE04A1DD62FDA002C3F8E /* SDL2_image.framework */; };
+		52ECE04D1DD62FDA002C3F8E /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52ECE04B1DD62FDA002C3F8E /* SDL2.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -23,8 +29,20 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		521229001DD9118E00EC6AED /* Hero.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Hero.cpp; sourceTree = "<group>"; };
+		521229011DD9118E00EC6AED /* Hero.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Hero.hpp; sourceTree = "<group>"; };
+		521229031DD9193100EC6AED /* Coordinate Struct.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Coordinate Struct.h"; sourceTree = "<group>"; };
+		523840201DD81E5500FC8EED /* Template for gameState Methods.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "Template for gameState Methods.cpp"; sourceTree = "<group>"; };
+		5254912E1DD92C7400082CBC /* resources */ = {isa = PBXFileReference; lastKnownFileType = folder; path = resources; sourceTree = SOURCE_ROOT; };
+		5297AF6A1DD6C61E00B8C3EF /* GameMap2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameMap2.cpp; sourceTree = "<group>"; };
+		5297AF6B1DD6C61E00B8C3EF /* GameMap2.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GameMap2.hpp; sourceTree = "<group>"; };
+		5297AF6C1DD6C61E00B8C3EF /* GameObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameObject.cpp; sourceTree = "<group>"; };
+		5297AF6D1DD6C61E00B8C3EF /* GameObject.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GameObject.hpp; sourceTree = "<group>"; };
 		52ECE03F1DD62FC1002C3F8E /* DnDrD */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = DnDrD; sourceTree = BUILT_PRODUCTS_DIR; };
 		52ECE0421DD62FC1002C3F8E /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		52ECE04A1DD62FDA002C3F8E /* SDL2_image.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_image.framework; path = ../../../../../../../Library/Frameworks/SDL2_image.framework; sourceTree = "<group>"; };
+		52ECE04B1DD62FDA002C3F8E /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = ../../../../../../../Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
+		52ECE04E1DD6301D002C3F8E /* defines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = defines.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,17 +50,34 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52ECE04C1DD62FDA002C3F8E /* SDL2_image.framework in Frameworks */,
+				52ECE04D1DD62FDA002C3F8E /* SDL2.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5297AF701DD6C62700B8C3EF /* GameMap */ = {
+			isa = PBXGroup;
+			children = (
+				5297AF6A1DD6C61E00B8C3EF /* GameMap2.cpp */,
+				5297AF6B1DD6C61E00B8C3EF /* GameMap2.hpp */,
+				5297AF6C1DD6C61E00B8C3EF /* GameObject.cpp */,
+				5297AF6D1DD6C61E00B8C3EF /* GameObject.hpp */,
+				521229001DD9118E00EC6AED /* Hero.cpp */,
+				521229011DD9118E00EC6AED /* Hero.hpp */,
+				521229031DD9193100EC6AED /* Coordinate Struct.h */,
+			);
+			name = GameMap;
+			sourceTree = "<group>";
+		};
 		52ECE0361DD62FC1002C3F8E = {
 			isa = PBXGroup;
 			children = (
 				52ECE0411DD62FC1002C3F8E /* DnDrD */,
 				52ECE0401DD62FC1002C3F8E /* Products */,
+				52ECE0491DD62FDA002C3F8E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -57,9 +92,22 @@
 		52ECE0411DD62FC1002C3F8E /* DnDrD */ = {
 			isa = PBXGroup;
 			children = (
+				5254912E1DD92C7400082CBC /* resources */,
+				5297AF701DD6C62700B8C3EF /* GameMap */,
 				52ECE0421DD62FC1002C3F8E /* main.cpp */,
+				523840201DD81E5500FC8EED /* Template for gameState Methods.cpp */,
+				52ECE04E1DD6301D002C3F8E /* defines.h */,
 			);
 			path = DnDrD;
+			sourceTree = "<group>";
+		};
+		52ECE0491DD62FDA002C3F8E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				52ECE04A1DD62FDA002C3F8E /* SDL2_image.framework */,
+				52ECE04B1DD62FDA002C3F8E /* SDL2.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -119,7 +167,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5297AF6F1DD6C61E00B8C3EF /* GameObject.cpp in Sources */,
+				523840211DD81E5500FC8EED /* Template for gameState Methods.cpp in Sources */,
+				5297AF6E1DD6C61E00B8C3EF /* GameMap2.cpp in Sources */,
 				52ECE0431DD62FC1002C3F8E /* main.cpp in Sources */,
+				521229021DD9118E00EC6AED /* Hero.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -216,6 +268,10 @@
 		52ECE0471DD62FC1002C3F8E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LOCAL_LIBRARY_DIR)/Frameworks",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -223,6 +279,10 @@
 		52ECE0481DD62FC1002C3F8E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LOCAL_LIBRARY_DIR)/Frameworks",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -246,6 +306,7 @@
 				52ECE0481DD62FC1002C3F8E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
