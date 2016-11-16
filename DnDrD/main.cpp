@@ -14,6 +14,7 @@
 #include "SDL2/SDL.h"
 #include "SDL2_image/SDL_image.h"
 #include "SDL2/SDL_thread.h"
+
 #include "GameMap2.hpp"
 #include "Hero.hpp"
 
@@ -131,6 +132,7 @@ void emptyTextures(){
     }
     game_currentTextures.clear();
 }
+//moves the game hero on the map by one unit, can be later modified to move any GameObject
 void moveHero(Orientation direction){
     game_hero->incrementMoveCounter();
     game_hero->setOrientation(direction);
@@ -161,8 +163,8 @@ void moveHero(Orientation direction){
        nextBlock.y >= game_map->getArrayDimensions().y){
         return;
     }
-    //exit function if next block is already occupied
-    if(game_map->isOccupied(nextBlock)){
+    //exit function if next block can't be moved into
+    if(!game_map->getBlock(nextBlock)->canMoveInto()){
         return;
     }
     
@@ -171,6 +173,69 @@ void moveHero(Orientation direction){
     //move character to next block
     game_map->occupyBlock(nextBlock, game_hero);
     
+}
+void renderMap(){
+    SDL_Rect srcrect;
+    //render
+    srcrect = {STONE_GROUND_X_SELECTION,STONE_GROUND_Y_SELECTION,STONE_GROUND_SIZE,STONE_GROUND_SIZE};
+    for(int r = 0; r < game_map->getArrayDimensions().y; r++){
+        for(int c = 0; c < game_map->getArrayDimensions().x; c++){
+            //if statement makes game render map only if it is in the window and game area
+            //
+            if(game_map->getBlock(c, r)->dstrect.x >= 0 &&
+               game_map->getBlock(c, r)->dstrect.y >= 0 &&
+               game_map->getBlock(c, r)->dstrect.x < WINDOW_WIDTH &&
+               game_map->getBlock(c, r)->dstrect.y + game_map->getBlock(c, r)->dstrect.h <= WINDOW_HEIGHT - TOOLBAR_PANE_HEIGHT){
+                
+                //determine which texture to display for ground type
+                int texType = 0;
+                switch (game_map->getBlock(c, r)->getGroundType()) {
+                    case STONE:
+                        texType = 2;
+                        break;
+                        
+                    default:
+                        break;
+                }
+                
+                //render ground of block
+                SDL_RenderCopy(renderer, game_currentTextures[texType].texture, &srcrect, &game_map->getBlock(c, r)->dstrect);
+                
+                //TODO: Render stuff contained by block
+                
+                //render hero
+                if(game_map->getBlock(c, r)->getContainedItem() == game_hero){
+                    SDL_Rect hero_srcrect = {game_hero->getMoveCounter()*HERO_IMAGE_SPRITE_SIZE,game_hero->getOrientation()*HERO_IMAGE_SPRITE_SIZE,HERO_IMAGE_SPRITE_SIZE,HERO_IMAGE_SPRITE_SIZE};
+                    SDL_RenderCopy(renderer, game_currentTextures[1].texture, &hero_srcrect, &game_map->getBlock(c, r)->dstrect);
+                }
+
+            }
+        }
+    }
+}
+void shiftMap(Orientation direction){
+    int xShift = 0;
+    int yShift = 0;
+    switch(direction){
+        case ORIENTATION_UP:
+            yShift = -BLOCK_SIZE;
+            break;
+        case ORIENTATION_DOWN:
+            yShift = BLOCK_SIZE;
+            break;
+        case ORIENTATION_RIGHT:
+            xShift = BLOCK_SIZE;
+            break;
+        case ORIENTATION_LEFT:
+            xShift = -BLOCK_SIZE;
+            break;
+    }
+    for(int r = 0; r < game_map->getArrayDimensions().y; r++){
+        for(int c = 0; c < game_map->getArrayDimensions().x; c++){
+            game_map->getBlock(c, r)->dstrect.x += xShift;
+            game_map->getBlock(c, r)->dstrect.y += yShift;
+        }
+    }
 }
 
 //-----Methods for Main Menu
@@ -365,12 +430,18 @@ void gameInit(){
     //delete gamemap in case one already existed
     delete game_map;
     //create gamemap TODO: allow map to be loaded
-    game_map = new GameMap2(20,15,Coordinate{0,0},Coordinate{19,14},nullptr, nullptr);
+    game_map = new GameMap2(30,30,Coordinate{0,0},Coordinate{19,14},nullptr, nullptr);
+    //set initial dstrect of each block
+    for(int r = 0; r < game_map->getArrayDimensions().y; r++){
+        for(int c = 0; c < game_map->getArrayDimensions().x; c++){
+            game_map->getBlock(c, r)->dstrect = {c*BLOCK_SIZE,BLOCK_SIZE*(game_map->getArrayDimensions().y-r-1),BLOCK_SIZE,BLOCK_SIZE};
+        }
+    }
     
     //create hero TODO: allow char to be loaded
     game_hero = new Hero();
     //add hero to map
-    game_map->occupyBlock(Coordinate{11,12}, game_hero);
+    game_map->occupyBlock(Coordinate{4,18}, game_hero);
     
     
     //remove init method from state stack
@@ -405,21 +476,29 @@ void gameInputHandler(){
                     emptyTextures();
                     
                     break;
-                case SDLK_UP:
                 case SDLK_w:
                     moveHero(ORIENTATION_UP);
                     break;
-                case SDLK_DOWN:
                 case SDLK_s:
                     moveHero(ORIENTATION_DOWN);
                     break;
-                case SDLK_LEFT:
                 case SDLK_a:
                     moveHero(ORIENTATION_LEFT);
                     break;
-                case SDLK_RIGHT:
                 case SDLK_d:
                     moveHero(ORIENTATION_RIGHT);
+                    break;
+                case SDLK_UP:
+                    shiftMap(ORIENTATION_UP);
+                    break;
+                case SDLK_DOWN:
+                    shiftMap(ORIENTATION_DOWN);
+                    break;
+                case SDLK_LEFT:
+                    shiftMap(ORIENTATION_LEFT);
+                    break;
+                case SDLK_RIGHT:
+                    shiftMap(ORIENTATION_RIGHT);
                     break;
                 default:
                     break;
@@ -448,39 +527,7 @@ void game(){
         gameInputHandler();
         //ALL RENDERING CODE TAKES PLACE IN HERE
         {
-            //Render background
-            SDL_Rect srcrect = {0,0,1773,1182};
-            SDL_RenderCopy(renderer, game_currentTextures[0].texture, &srcrect, &game_currentTextures[0].dstrect);
-            
-            //assign dstrect to each map block and render
-            srcrect = {STONE_GROUND_X_SELECTION,STONE_GROUND_Y_SELECTION,STONE_GROUND_SIZE,STONE_GROUND_SIZE};
-            for(int r = 0; r < game_map->getArrayDimensions().y; r++){
-                for(int c = 0; c < game_map->getArrayDimensions().x; c++){
-                    
-                    //determine which texture to display for ground type
-                    int texType = 0;
-                    switch (game_map->getBlock(c, r)->getGroundType()) {
-                        case STONE:
-                            texType = 2;
-                            break;
-                            
-                        default:
-                            break;
-                    }
-                    
-                    //render ground of block
-                    game_map->getBlock(c, r)->dstrect = {c*BLOCK_SIZE,BLOCK_SIZE*(game_map->getArrayDimensions().y-r-1),BLOCK_SIZE,BLOCK_SIZE};
-                    SDL_RenderCopy(renderer, game_currentTextures[texType].texture, &srcrect, &game_map->getBlock(c, r)->dstrect);
-                    
-                    //TODO: Render stuff contained by block
-                    
-                    //render hero
-                    if(game_map->getBlock(c, r)->getContainedItem() == game_hero){
-                        SDL_Rect hero_srcrect = {game_hero->getMoveCounter()*HERO_IMAGE_SPRITE_SIZE,game_hero->getOrientation()*HERO_IMAGE_SPRITE_SIZE,HERO_IMAGE_SPRITE_SIZE,HERO_IMAGE_SPRITE_SIZE};
-                        SDL_RenderCopy(renderer, game_currentTextures[1].texture, &hero_srcrect, &game_map->getBlock(c, r)->dstrect);
-                    }
-                }
-            }
+            renderMap();
         }
         //DO NOT PUT MORE CODE PAST HERE
         
