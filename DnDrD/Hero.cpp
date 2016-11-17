@@ -15,7 +15,7 @@ Hero::Hero(){
 }
 //Destructor
 Hero::~Hero(){
-    //doesn't need to do anything
+    //doesn't need to do anything yet
 }
 
 //getter and mutator for moveCounter

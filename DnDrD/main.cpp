@@ -177,10 +177,9 @@ void moveHero(Orientation direction){
 void renderMap(){
     SDL_Rect srcrect;
     //render
-    srcrect = {STONE_GROUND_X_SELECTION,STONE_GROUND_Y_SELECTION,STONE_GROUND_SIZE,STONE_GROUND_SIZE};
     for(int r = 0; r < game_map->getArrayDimensions().y; r++){
         for(int c = 0; c < game_map->getArrayDimensions().x; c++){
-            //if statement makes game render map only if it is in the window and game area
+            //if statement makes game render map only if it is in the window and game area; improves performance greatly
             //
             if(game_map->getBlock(c, r)->dstrect.x >= 0 &&
                game_map->getBlock(c, r)->dstrect.y >= 0 &&
@@ -192,8 +191,19 @@ void renderMap(){
                 switch (game_map->getBlock(c, r)->getGroundType()) {
                     case STONE:
                         texType = 2;
+                        srcrect = {STONE_GROUND_X_SELECTION,STONE_GROUND_Y_SELECTION,STONE_GROUND_SIZE,STONE_GROUND_SIZE};
                         break;
-                        
+                    case GRASS:
+                        texType = 3;
+                        srcrect = {0,0,128,128}; //TODO: unhardcode these numbers
+                        break;
+                    case WALL:
+                        texType = 4;
+                        srcrect = {0,0,128,128};
+                        break;
+                    case WATER:
+                        texType = 5;
+                        srcrect = {0,0,128,128};
                     default:
                         break;
                 }
@@ -212,6 +222,19 @@ void renderMap(){
             }
         }
     }
+    
+    //Draw a grey area for the toolbar
+    {
+        //set location and size of toolbar
+        SDL_Rect toolbarPane = {0,WINDOW_HEIGHT-TOOLBAR_PANE_HEIGHT,WINDOW_WIDTH,TOOLBAR_PANE_HEIGHT};
+        //Set the render colour for the toolbar area
+        SDL_SetRenderDrawColor(renderer, 150, 150, 150, 255);
+        //draw the rectangle
+        SDL_RenderFillRect(renderer, &toolbarPane);
+        //reset render colour to black
+        SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+    }
+    
 }
 void shiftMap(Orientation direction){
     int xShift = 0;
@@ -423,6 +446,27 @@ void gameInit(){
         SDL_FreeSurface(addSurface);
         game_currentTextures.push_back(textureStruct{addTexture,dstrect});
         
+        //ground grass image
+        addSurface = IMG_Load("grass.png");
+        dstrect = {0,0,0,0};
+        addTexture = SDL_CreateTextureFromSurface(renderer, addSurface);
+        SDL_FreeSurface(addSurface);
+        game_currentTextures.push_back(textureStruct{addTexture,dstrect});
+        
+        //ground wall image
+        addSurface = IMG_Load("wall.png");
+        dstrect = {0,0,0,0};
+        addTexture = SDL_CreateTextureFromSurface(renderer, addSurface);
+        SDL_FreeSurface(addSurface);
+        game_currentTextures.push_back(textureStruct{addTexture,dstrect});
+        
+        //ground water image
+        addSurface = IMG_Load("water.png");
+        dstrect = {0,0,0,0};
+        addTexture = SDL_CreateTextureFromSurface(renderer, addSurface);
+        SDL_FreeSurface(addSurface);
+        game_currentTextures.push_back(textureStruct{addTexture,dstrect});
+        
         
         
     }
@@ -437,6 +481,9 @@ void gameInit(){
             game_map->getBlock(c, r)->dstrect = {c*BLOCK_SIZE,BLOCK_SIZE*(game_map->getArrayDimensions().y-r-1),BLOCK_SIZE,BLOCK_SIZE};
         }
     }
+    game_map->fillcell(Coordinate{0, 18}, GRASS);
+    game_map->fillcell(Coordinate{0, 17}, WALL);
+    game_map->fillcell(Coordinate{0, 16}, WATER);
     
     //create hero TODO: allow char to be loaded
     game_hero = new Hero();
