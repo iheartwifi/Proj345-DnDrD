@@ -12,6 +12,7 @@
 #include <iostream>
 #include "SDL2/SDL.h"
 #include "SDL2_image/SDL_image.h"
+#include "SDL2_ttf/SDL_ttf.h"
 #include <vector>
 #include <stack>
 #include "defines.h"
@@ -30,13 +31,14 @@ public:
     SDL_Renderer* game_renderer;
     int* game_timer; //controls framerate
     std::stack<GameState*>* game_stateStack;
+    TTF_Font* game_font;
     
     //state data
     SDL_Event state_event; //receives user input
     std::vector<textureStruct> state_textures;
     
     //constructor
-    GameState(SDL_Renderer* renderer, SDL_Window* window, int* timer, std::stack<GameState*>* stateStack);
+    GameState(SDL_Renderer* renderer, SDL_Window* window, int* timer, std::stack<GameState*>* stateStack, TTF_Font* font);
     //destructor, deletes only state data
     virtual ~GameState();
     
@@ -46,6 +48,10 @@ public:
     
     void endGame();
     bool checkIfInside(SDL_Rect dstrect, int x, int y);
+    
+    void removeSelfFromStateStack();
+private:
+    bool readyToDie = false; //This triggers object to delete itself at the end of run() if set to true
 };
 
 #endif /* GameState_hpp */

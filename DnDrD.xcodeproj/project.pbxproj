@@ -8,12 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		521229021DD9118E00EC6AED /* Hero.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 521229001DD9118E00EC6AED /* Hero.cpp */; };
-		523840211DD81E5500FC8EED /* Template for gameState Methods.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 523840201DD81E5500FC8EED /* Template for gameState Methods.cpp */; };
 		524B119C1DE7830900E44D1A /* GameState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 524B11921DE7830900E44D1A /* GameState.cpp */; };
 		524B119D1DE7830900E44D1A /* MainMenuState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 524B11941DE7830900E44D1A /* MainMenuState.cpp */; };
 		524B119E1DE7830900E44D1A /* MapEditorState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 524B11961DE7830900E44D1A /* MapEditorState.cpp */; };
 		524B119F1DE7830900E44D1A /* PlayGameState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 524B11981DE7830900E44D1A /* PlayGameState.cpp */; };
 		524B11A01DE7830900E44D1A /* vMapState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 524B119A1DE7830900E44D1A /* vMapState.cpp */; };
+		524B44E51DE78F6400042C70 /* SDL2_ttf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 524B44E41DE78F6400042C70 /* SDL2_ttf.framework */; };
+		524B44E81DE7947D00042C70 /* TextInputState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 524B44E61DE7947D00042C70 /* TextInputState.cpp */; };
 		5297AF6E1DD6C61E00B8C3EF /* GameMap2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5297AF6A1DD6C61E00B8C3EF /* GameMap2.cpp */; };
 		5297AF6F1DD6C61E00B8C3EF /* GameObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5297AF6C1DD6C61E00B8C3EF /* GameObject.cpp */; };
 		52ECE0431DD62FC1002C3F8E /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 52ECE0421DD62FC1002C3F8E /* main.cpp */; };
@@ -37,7 +38,6 @@
 		521229001DD9118E00EC6AED /* Hero.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Hero.cpp; sourceTree = "<group>"; };
 		521229011DD9118E00EC6AED /* Hero.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Hero.hpp; sourceTree = "<group>"; };
 		521229031DD9193100EC6AED /* Coordinate Struct.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Coordinate Struct.h"; sourceTree = "<group>"; };
-		523840201DD81E5500FC8EED /* Template for gameState Methods.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "Template for gameState Methods.cpp"; sourceTree = "<group>"; };
 		524B11921DE7830900E44D1A /* GameState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameState.cpp; sourceTree = "<group>"; };
 		524B11931DE7830900E44D1A /* GameState.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GameState.hpp; sourceTree = "<group>"; };
 		524B11941DE7830900E44D1A /* MainMenuState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MainMenuState.cpp; sourceTree = "<group>"; };
@@ -48,6 +48,10 @@
 		524B11991DE7830900E44D1A /* PlayGameState.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PlayGameState.hpp; sourceTree = "<group>"; };
 		524B119A1DE7830900E44D1A /* vMapState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = vMapState.cpp; sourceTree = "<group>"; };
 		524B119B1DE7830900E44D1A /* vMapState.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = vMapState.hpp; sourceTree = "<group>"; };
+		524B44E41DE78F6400042C70 /* SDL2_ttf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_ttf.framework; path = ../../../../../../Library/Frameworks/SDL2_ttf.framework; sourceTree = "<group>"; };
+		524B44E61DE7947D00042C70 /* TextInputState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TextInputState.cpp; sourceTree = "<group>"; };
+		524B44E71DE7947D00042C70 /* TextInputState.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TextInputState.hpp; sourceTree = "<group>"; };
+		524B44E91DE798B100042C70 /* Photoshop templates */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Photoshop templates"; sourceTree = SOURCE_ROOT; };
 		5254912E1DD92C7400082CBC /* resources */ = {isa = PBXFileReference; lastKnownFileType = folder; path = resources; sourceTree = SOURCE_ROOT; };
 		5297AF6A1DD6C61E00B8C3EF /* GameMap2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameMap2.cpp; sourceTree = "<group>"; };
 		5297AF6B1DD6C61E00B8C3EF /* GameMap2.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GameMap2.hpp; sourceTree = "<group>"; };
@@ -65,6 +69,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				524B44E51DE78F6400042C70 /* SDL2_ttf.framework in Frameworks */,
 				52ECE04C1DD62FDA002C3F8E /* SDL2_image.framework in Frameworks */,
 				52ECE04D1DD62FDA002C3F8E /* SDL2.framework in Frameworks */,
 			);
@@ -86,6 +91,8 @@
 				524B11991DE7830900E44D1A /* PlayGameState.hpp */,
 				524B119A1DE7830900E44D1A /* vMapState.cpp */,
 				524B119B1DE7830900E44D1A /* vMapState.hpp */,
+				524B44E61DE7947D00042C70 /* TextInputState.cpp */,
+				524B44E71DE7947D00042C70 /* TextInputState.hpp */,
 			);
 			name = GameStates;
 			sourceTree = "<group>";
@@ -124,10 +131,10 @@
 		52ECE0411DD62FC1002C3F8E /* DnDrD */ = {
 			isa = PBXGroup;
 			children = (
+				524B44E91DE798B100042C70 /* Photoshop templates */,
 				5254912E1DD92C7400082CBC /* resources */,
 				5297AF701DD6C62700B8C3EF /* GameMap */,
 				52ECE0421DD62FC1002C3F8E /* main.cpp */,
-				523840201DD81E5500FC8EED /* Template for gameState Methods.cpp */,
 				52ECE04E1DD6301D002C3F8E /* defines.h */,
 				524B11A11DE7831300E44D1A /* GameStates */,
 			);
@@ -137,6 +144,7 @@
 		52ECE0491DD62FDA002C3F8E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				524B44E41DE78F6400042C70 /* SDL2_ttf.framework */,
 				52ECE04A1DD62FDA002C3F8E /* SDL2_image.framework */,
 				52ECE04B1DD62FDA002C3F8E /* SDL2.framework */,
 			);
@@ -204,10 +212,10 @@
 				524B119E1DE7830900E44D1A /* MapEditorState.cpp in Sources */,
 				5297AF6F1DD6C61E00B8C3EF /* GameObject.cpp in Sources */,
 				524B119C1DE7830900E44D1A /* GameState.cpp in Sources */,
-				523840211DD81E5500FC8EED /* Template for gameState Methods.cpp in Sources */,
 				5297AF6E1DD6C61E00B8C3EF /* GameMap2.cpp in Sources */,
 				524B119F1DE7830900E44D1A /* PlayGameState.cpp in Sources */,
 				52ECE0431DD62FC1002C3F8E /* main.cpp in Sources */,
+				524B44E81DE7947D00042C70 /* TextInputState.cpp in Sources */,
 				521229021DD9118E00EC6AED /* Hero.cpp in Sources */,
 				524B11A01DE7830900E44D1A /* vMapState.cpp in Sources */,
 			);

@@ -8,7 +8,7 @@
 
 #include "MapEditorState.hpp"
 
-MapEditorState::MapEditorState(SDL_Renderer* renderer, SDL_Window* window, int* timer, std::stack<GameState*>* stateStack) : vMapState(renderer,window,timer, stateStack){
+MapEditorState::MapEditorState(SDL_Renderer* renderer, SDL_Window* window, int* timer, std::stack<GameState*>* stateStack, TTF_Font* font) : vMapState(renderer,window,timer, stateStack, font){
     
 }
 void MapEditorState::handleInput(){
@@ -31,10 +31,7 @@ void MapEditorState::handleInput(){
         if(state_event.type == SDL_KEYDOWN){
             switch (state_event.key.keysym.sym) {
                 case SDLK_ESCAPE:
-                    //pop self off stack
-                    game_stateStack->pop();
-                    
-                    //TODO:  fix memory leak here: delete this;
+                    removeSelfFromStateStack();
                     break;
                 case SDLK_UP:
                     shiftMap(ORIENTATION_DOWN);

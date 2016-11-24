@@ -8,7 +8,7 @@
 
 #include "vMapState.hpp"
 
-vMapState::vMapState(SDL_Renderer* renderer, SDL_Window* window, int* timer, std::stack<GameState*>* stateStack) : GameState(renderer,window,timer, stateStack){
+vMapState::vMapState(SDL_Renderer* renderer, SDL_Window* window, int* timer, std::stack<GameState*>* stateStack, TTF_Font* font) : GameState(renderer,window,timer, stateStack, font){
     
     //load default map and hero
     //TODO: allow specific map & hero to be loaded
@@ -38,51 +38,57 @@ vMapState::vMapState(SDL_Renderer* renderer, SDL_Window* window, int* timer, std
     //add textures to currentTextures one at a time
     {
         //hero image
-        addSurface = IMG_Load("hero.png");
+        addSurface = IMG_Load(PATH_TO_HERO);
         addStruct.dstrect = {0,0,0,0};
         addStruct.srcrect = {0,0,HERO_IMAGE_SPRITE_SIZE,HERO_IMAGE_SPRITE_SIZE};
         addStruct.texture = SDL_CreateTextureFromSurface(renderer, addSurface);
+        SDL_FreeSurface(addSurface);
+        
         state_textures.push_back(addStruct);
         
         //load textures for ground types
         int i = 0;
         //ground STONE image
-        addSurface = IMG_Load("ground.jpg");
+        addSurface = IMG_Load(PATH_TO_GROUND);
         addStruct.dstrect = {BLOCK_SIZE * i++,WINDOW_HEIGHT-BLOCK_SIZE,BLOCK_SIZE,BLOCK_SIZE};
         addStruct.srcrect = {STONE_GROUND_X_SELECTION,STONE_GROUND_Y_SELECTION,STONE_GROUND_SIZE,STONE_GROUND_SIZE};
         addStruct.texture = SDL_CreateTextureFromSurface(renderer, addSurface);
+        SDL_FreeSurface(addSurface);
+        
         state_textures.push_back(addStruct);
         
         //ground grass image
-        addSurface = IMG_Load("grass.png");
+        addSurface = IMG_Load(PATH_TO_GRASS);
         addStruct.dstrect = {BLOCK_SIZE * i++,WINDOW_HEIGHT-BLOCK_SIZE,BLOCK_SIZE,BLOCK_SIZE};
         addStruct.srcrect = {0,0,addSurface->w,addSurface->h};
         addStruct.texture = SDL_CreateTextureFromSurface(renderer, addSurface);
+        SDL_FreeSurface(addSurface);
+        
         state_textures.push_back(addStruct);
         
         //ground wall image
-        addSurface = IMG_Load("wall.png");
+        addSurface = IMG_Load(PATH_TO_WALL);
         addStruct.dstrect = {BLOCK_SIZE * i++,WINDOW_HEIGHT-BLOCK_SIZE,BLOCK_SIZE,BLOCK_SIZE};
         addStruct.srcrect = {0,0,addSurface->w,addSurface->h};
         addStruct.texture = SDL_CreateTextureFromSurface(renderer, addSurface);
+        SDL_FreeSurface(addSurface);
+        
         state_textures.push_back(addStruct);
         
         //ground water image
-        addSurface = IMG_Load("water.png");
+        addSurface = IMG_Load(PATH_TO_WATER);
         addStruct.dstrect = {BLOCK_SIZE * i++,WINDOW_HEIGHT-BLOCK_SIZE,BLOCK_SIZE,BLOCK_SIZE};
         addStruct.srcrect = {0,0,addSurface->w,addSurface->h};
         addStruct.texture = SDL_CreateTextureFromSurface(renderer, addSurface);
-        state_textures.push_back(addStruct);
+        SDL_FreeSurface(addSurface);
         
         state_textures.push_back(addStruct);
+        
     }
-    
-    SDL_FreeSurface(addSurface);
-    
 }
 vMapState::~vMapState(){
     delete state_map;
-    delete state_hero;
+    //state_hero is deleted with the state map because it exists on the map
 }
 void vMapState::render(){
         for(int r = 0; r < state_map->getArrayDimensions().y; r++){

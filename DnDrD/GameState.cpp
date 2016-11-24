@@ -8,11 +8,12 @@
 
 #include "GameState.hpp"
 
-GameState::GameState(SDL_Renderer* renderer, SDL_Window* window, int* timer, std::stack<GameState*>* stateStack){
+GameState::GameState(SDL_Renderer* renderer, SDL_Window* window, int* timer, std::stack<GameState*>* stateStack, TTF_Font* font){
     this->game_renderer = renderer;
     this->game_window = window;
     this->game_timer = timer;
     this->game_stateStack = stateStack;
+    this->game_font = font;
 }
 GameState::~GameState(){
     //delete textures
@@ -23,10 +24,12 @@ GameState::~GameState(){
 }
 
 void GameState::run(){
+   
+    this->handleInput();
+    
     //limit frame rate to FRAME_RATE
     if ( (SDL_GetTicks() - *game_timer) >= FRAME_RATE )
     {
-        this->handleInput();
         this->render();
         
         *game_timer = SDL_GetTicks();
@@ -35,6 +38,16 @@ void GameState::run(){
         //Wait remaining time
         SDL_Delay( FRAME_RATE - (SDL_GetTicks() - *game_timer) + 1 );
     }
+    
+    if(readyToDie){
+        delete this;
+    }
+}
+
+void GameState::removeSelfFromStateStack(){
+    //pop self off stack
+    game_stateStack->pop();
+    readyToDie = true;
 }
 
 void GameState::endGame(){

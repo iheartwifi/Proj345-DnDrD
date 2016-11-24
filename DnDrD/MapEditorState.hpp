@@ -14,7 +14,7 @@
 
 class MapEditorState : public vMapState{
 public:
-    MapEditorState(SDL_Renderer* renderer, SDL_Window* window, int* timer, std::stack<GameState*>* stateStack);
+    MapEditorState(SDL_Renderer* renderer, SDL_Window* window, int* timer, std::stack<GameState*>* stateStack, TTF_Font* font);
     void handleInput();
     void render();
 };

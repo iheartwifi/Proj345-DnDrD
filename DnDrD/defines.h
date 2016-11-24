@@ -36,5 +36,25 @@
 
 #define HERO_IMAGE_SPRITE_SIZE 128
 
+#define FONT_SIZE 48
+#define FONT_COLOUR SDL_Color{0,0,0,255}
+
+//file paths
+#define PATH_TO_BACKGROUND "background.jpg"
+#define PATH_TO_GLOWING_SQAURE "glowingsquare.png"
+#define PATH_TO_GRASS "grass.png"
+#define PATH_TO_GROUND "ground.jpg"
+#define PATH_TO_WALL "wall.png"
+#define PATH_TO_WATER "water.png"
+#define PATH_TO_HERO "hero.png"
+#define PATH_TO_FONT "Luminari.ttf"
+#define PATH_TO_MAP_EDITOR_EXIT "me_exit.png"
+#define PATH_TO_MAP_EDITOR_NEXT "me_next.png"
+#define PATH_TO_MAIN_MENU_BUTTON_CHARACTER_EDITOR "menu_buttons/main_character_editor.png"
+#define PATH_TO_MAIN_MENU_BUTTON_EXIT "menu_buttons/main_exit.png"
+#define PATH_TO_MAIN_MENU_BUTTON_ITEM_EDITOR "menu_buttons/main_item_editor.png"
+#define PATH_TO_MAIN_MENU_BUTTON_MAP_EDITOR "menu_buttons/main_mapeditor.png"
+#define PATH_TO_MAIN_MENU_BUTTON_NEW_GAME "menu_buttons/main_newgame.png"
+#define PATH_TO_BLANK_SCROLL "blank_scroll.png"
 
 #endif /* defines_h */
