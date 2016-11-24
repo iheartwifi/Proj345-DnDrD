@@ -9,6 +9,11 @@
 /* Begin PBXBuildFile section */
 		521229021DD9118E00EC6AED /* Hero.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 521229001DD9118E00EC6AED /* Hero.cpp */; };
 		523840211DD81E5500FC8EED /* Template for gameState Methods.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 523840201DD81E5500FC8EED /* Template for gameState Methods.cpp */; };
+		524B119C1DE7830900E44D1A /* GameState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 524B11921DE7830900E44D1A /* GameState.cpp */; };
+		524B119D1DE7830900E44D1A /* MainMenuState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 524B11941DE7830900E44D1A /* MainMenuState.cpp */; };
+		524B119E1DE7830900E44D1A /* MapEditorState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 524B11961DE7830900E44D1A /* MapEditorState.cpp */; };
+		524B119F1DE7830900E44D1A /* PlayGameState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 524B11981DE7830900E44D1A /* PlayGameState.cpp */; };
+		524B11A01DE7830900E44D1A /* vMapState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 524B119A1DE7830900E44D1A /* vMapState.cpp */; };
 		5297AF6E1DD6C61E00B8C3EF /* GameMap2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5297AF6A1DD6C61E00B8C3EF /* GameMap2.cpp */; };
 		5297AF6F1DD6C61E00B8C3EF /* GameObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5297AF6C1DD6C61E00B8C3EF /* GameObject.cpp */; };
 		52ECE0431DD62FC1002C3F8E /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 52ECE0421DD62FC1002C3F8E /* main.cpp */; };
@@ -33,6 +38,16 @@
 		521229011DD9118E00EC6AED /* Hero.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Hero.hpp; sourceTree = "<group>"; };
 		521229031DD9193100EC6AED /* Coordinate Struct.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Coordinate Struct.h"; sourceTree = "<group>"; };
 		523840201DD81E5500FC8EED /* Template for gameState Methods.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "Template for gameState Methods.cpp"; sourceTree = "<group>"; };
+		524B11921DE7830900E44D1A /* GameState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameState.cpp; sourceTree = "<group>"; };
+		524B11931DE7830900E44D1A /* GameState.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GameState.hpp; sourceTree = "<group>"; };
+		524B11941DE7830900E44D1A /* MainMenuState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MainMenuState.cpp; sourceTree = "<group>"; };
+		524B11951DE7830900E44D1A /* MainMenuState.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MainMenuState.hpp; sourceTree = "<group>"; };
+		524B11961DE7830900E44D1A /* MapEditorState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MapEditorState.cpp; sourceTree = "<group>"; };
+		524B11971DE7830900E44D1A /* MapEditorState.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MapEditorState.hpp; sourceTree = "<group>"; };
+		524B11981DE7830900E44D1A /* PlayGameState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PlayGameState.cpp; sourceTree = "<group>"; };
+		524B11991DE7830900E44D1A /* PlayGameState.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PlayGameState.hpp; sourceTree = "<group>"; };
+		524B119A1DE7830900E44D1A /* vMapState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = vMapState.cpp; sourceTree = "<group>"; };
+		524B119B1DE7830900E44D1A /* vMapState.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = vMapState.hpp; sourceTree = "<group>"; };
 		5254912E1DD92C7400082CBC /* resources */ = {isa = PBXFileReference; lastKnownFileType = folder; path = resources; sourceTree = SOURCE_ROOT; };
 		5297AF6A1DD6C61E00B8C3EF /* GameMap2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameMap2.cpp; sourceTree = "<group>"; };
 		5297AF6B1DD6C61E00B8C3EF /* GameMap2.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GameMap2.hpp; sourceTree = "<group>"; };
@@ -58,6 +73,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		524B11A11DE7831300E44D1A /* GameStates */ = {
+			isa = PBXGroup;
+			children = (
+				524B11921DE7830900E44D1A /* GameState.cpp */,
+				524B11931DE7830900E44D1A /* GameState.hpp */,
+				524B11941DE7830900E44D1A /* MainMenuState.cpp */,
+				524B11951DE7830900E44D1A /* MainMenuState.hpp */,
+				524B11961DE7830900E44D1A /* MapEditorState.cpp */,
+				524B11971DE7830900E44D1A /* MapEditorState.hpp */,
+				524B11981DE7830900E44D1A /* PlayGameState.cpp */,
+				524B11991DE7830900E44D1A /* PlayGameState.hpp */,
+				524B119A1DE7830900E44D1A /* vMapState.cpp */,
+				524B119B1DE7830900E44D1A /* vMapState.hpp */,
+			);
+			name = GameStates;
+			sourceTree = "<group>";
+		};
 		5297AF701DD6C62700B8C3EF /* GameMap */ = {
 			isa = PBXGroup;
 			children = (
@@ -97,6 +129,7 @@
 				52ECE0421DD62FC1002C3F8E /* main.cpp */,
 				523840201DD81E5500FC8EED /* Template for gameState Methods.cpp */,
 				52ECE04E1DD6301D002C3F8E /* defines.h */,
+				524B11A11DE7831300E44D1A /* GameStates */,
 			);
 			path = DnDrD;
 			sourceTree = "<group>";
@@ -167,11 +200,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				524B119D1DE7830900E44D1A /* MainMenuState.cpp in Sources */,
+				524B119E1DE7830900E44D1A /* MapEditorState.cpp in Sources */,
 				5297AF6F1DD6C61E00B8C3EF /* GameObject.cpp in Sources */,
+				524B119C1DE7830900E44D1A /* GameState.cpp in Sources */,
 				523840211DD81E5500FC8EED /* Template for gameState Methods.cpp in Sources */,
 				5297AF6E1DD6C61E00B8C3EF /* GameMap2.cpp in Sources */,
+				524B119F1DE7830900E44D1A /* PlayGameState.cpp in Sources */,
 				52ECE0431DD62FC1002C3F8E /* main.cpp in Sources */,
 				521229021DD9118E00EC6AED /* Hero.cpp in Sources */,
+				524B11A01DE7830900E44D1A /* vMapState.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

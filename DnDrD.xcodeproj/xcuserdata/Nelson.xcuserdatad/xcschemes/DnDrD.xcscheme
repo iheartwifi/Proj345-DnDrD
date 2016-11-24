@@ -47,7 +47,7 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
       useCustomWorkingDirectory = "YES"
-      customWorkingDirectory = "/Users/Nelson/Library/Mobile Documents/com~apple~CloudDocs/DnDrD/DnDrD/resources"
+      customWorkingDirectory = "/Users/Nelson/Library/Mobile Documents/com~apple~CloudDocs/Proj345-DnDrD/resources"
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
