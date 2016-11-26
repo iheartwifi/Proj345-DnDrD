@@ -9,35 +9,43 @@
 #ifndef defines_h
 #define defines_h
 
+//window defines
 #define WINDOW_HEIGHT NUMBER_BLOCKS_DISPLAYED_Y * BLOCK_SIZE + TOOLBAR_PANE_HEIGHT
 #define WINDOW_WIDTH NUMBER_BLOCKS_DISPLAYED_X * BLOCK_SIZE
 #define WINDOW_NAME "DnDrD"
 
+//number of blocks displayed
 #define NUMBER_BLOCKS_DISPLAYED_Y 15
 #define NUMBER_BLOCKS_DISPLAYED_X 25
 
+//size of each block
+#define BLOCK_SIZE 50
+
+//height of area reserved for toolbar
 #define TOOLBAR_PANE_HEIGHT 2 * BLOCK_SIZE
 
+//frame rate limits
 #define FRAMES_PER_SECOND 10
 #define FRAME_RATE 1000/FRAMES_PER_SECOND
 
+//main menu buttons sizing and placement defines
 #define MENU_BUTTON_SCALE 3/4
-#define MENU_BUTTON_WIDTH 382 * MENU_BUTTON_SCALE
-#define MENU_BUTTON_HEIGHT 157  * MENU_BUTTON_SCALE
+#define MENU_BUTTON_WIDTH 400 * MENU_BUTTON_SCALE //382
+#define MENU_BUTTON_HEIGHT 150  * MENU_BUTTON_SCALE //157
 #define MENU_BUTTON_Y_OFFSET 50
-#define MENU_BUTTON_SPACING 30
+#define MENU_BUTTON_SPACING 40
 
-
-#define BLOCK_SIZE 50
-
+//sprite maps defines
 #define STONE_GROUND_X_SELECTION 0
 #define STONE_GROUND_Y_SELECTION 0
 #define STONE_GROUND_SIZE 128
-
 #define HERO_IMAGE_SPRITE_SIZE 128
 
-#define FONT_SIZE 48
-#define FONT_COLOUR SDL_Color{0,0,0,255}
+
+//font defines
+#define FONT_SIZE 28
+#define COLOUR_BLACK SDL_Color{0,0,0,255}
+#define COLOUR_WHITE SDL_Color{255,255,255,255}
 
 //file paths
 #define PATH_TO_BACKGROUND "background.jpg"

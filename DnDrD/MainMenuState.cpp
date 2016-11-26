@@ -9,7 +9,8 @@
 #include "MainMenuState.hpp"
 #include "PlayGameState.hpp"
 #include "MapEditorState.hpp"
-#include "TextInputState.hpp"
+#include "MessageDisplayerState.hpp"
+#include "InputPromptState.hpp"
 
 MainMenuState::MainMenuState(SDL_Renderer* renderer, SDL_Window* window, int* timer, std::stack<GameState*>* stateStack, TTF_Font* font) : GameState(renderer,window,timer, stateStack, font){
     SDL_Surface*  addSurface = NULL;
@@ -132,11 +133,15 @@ void MainMenuState::handleInput(){
                     break;
                 case 3:
                     //TODO: add character editor
-                    nextState = new TextInputState(game_renderer, game_window, game_timer, game_stateStack, game_font);
+                    
+                    nextState = new MessageDisplayerState(game_renderer, game_window, game_timer, game_stateStack, game_font, "Example Message: The map file given was either not found or was invalid.");
                     game_stateStack->push(nextState);
                     break;
                 case 4:
                     //TODO: add item editor
+                    
+                    nextState = new InputPromptState(game_renderer, game_window, game_timer, game_stateStack, game_font, "Please enter the name of the item you wish to edit or enter 'new' to create a new item.");
+                    game_stateStack->push(nextState);
                     break;
                 case 5:
                     endGame();

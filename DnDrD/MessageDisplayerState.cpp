@@ -6,11 +6,12 @@
 //  Copyright © 2016 COMP 345. All rights reserved.
 //
 
-#include "TextInputState.hpp"
+#include "MessageDisplayerState.hpp"
 
-TextInputState::TextInputState(SDL_Renderer* renderer, SDL_Window* window, int* timer, std::stack<GameState*>* stateStack, TTF_Font* font) : GameState(renderer, window, timer, stateStack, font){
+MessageDisplayerState::MessageDisplayerState(SDL_Renderer* renderer, SDL_Window* window, int* timer, std::stack<GameState*>* stateStack, TTF_Font* font, std::string message) : GameState(renderer, window, timer, stateStack, font){
     
     this->game_font = font;
+    this->messageToDisplay = message;
     
     SDL_Surface*  addSurface = NULL;
     SDL_Rect dstrect = {0,0,0,0};
@@ -20,16 +21,17 @@ TextInputState::TextInputState(SDL_Renderer* renderer, SDL_Window* window, int* 
     {
         //background image
         addSurface = IMG_Load(PATH_TO_BLANK_SCROLL);
-        addStruct.dstrect = {0,0,WINDOW_WIDTH,WINDOW_HEIGHT};
+        addStruct.dstrect = {WINDOW_WIDTH/2 - addSurface->w/2,(WINDOW_HEIGHT-addSurface->h)/2,addSurface->w,addSurface->h};
         addStruct.srcrect = {0,0,addSurface->w,addSurface->h};
         addStruct.texture = SDL_CreateTextureFromSurface(game_renderer, addSurface);
         SDL_FreeSurface(addSurface);
         
         state_textures.push_back(addStruct);
         
-        //sample text
-        addSurface = TTF_RenderText_Solid( game_font, "testtesttestetsttest", FONT_COLOUR );
-        addStruct.dstrect = {WINDOW_WIDTH/2 - addSurface->w,400,addSurface->w,addSurface->h};
+        //message text
+        //the numbers given here to specify the size and location of the text should be changed to be more robust
+        addSurface = TTF_RenderText_Blended_Wrapped( game_font, messageToDisplay.c_str(), COLOUR_BLACK, state_textures[0].dstrect.w - 200 );
+        addStruct.dstrect = {(WINDOW_WIDTH - addSurface->w)/2,5*BLOCK_SIZE,addSurface->w,addSurface->h};
         addStruct.srcrect = {0,0,0,0};
         addStruct.texture = SDL_CreateTextureFromSurface(game_renderer, addSurface);
         SDL_FreeSurface(addSurface);
@@ -39,7 +41,7 @@ TextInputState::TextInputState(SDL_Renderer* renderer, SDL_Window* window, int* 
     
     
 }
-void TextInputState::handleInput(){
+void MessageDisplayerState::handleInput(){
     //check for event
     while ( SDL_PollEvent(&state_event) )
     {
@@ -69,7 +71,7 @@ void TextInputState::handleInput(){
     }
     return;
 }
-void TextInputState::render(){
+void MessageDisplayerState::render(){
     SDL_RenderCopy(game_renderer, state_textures[0].texture, &state_textures[0].srcrect, &state_textures[0].dstrect);
     SDL_RenderCopy(game_renderer, state_textures[1].texture, nullptr, &state_textures[1].dstrect);
     

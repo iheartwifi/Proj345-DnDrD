@@ -13,10 +13,12 @@
 #include "GameState.hpp"
 #include "SDL2_ttf/SDL_ttf.h"
 
-class TextInputState : public GameState{
-    TTF_Font* game_font;
+class MessageDisplayerState : public GameState{
+    
+    std::string messageToDisplay = "";
 public:
-    TextInputState(SDL_Renderer* renderer, SDL_Window* window, int* timer, std::stack<GameState*>* stateStack, TTF_Font* font);
+    TTF_Font* game_font;
+    MessageDisplayerState(SDL_Renderer* renderer, SDL_Window* window, int* timer, std::stack<GameState*>* stateStack, TTF_Font* font, std::string message);
     void handleInput();
     void render();
     
