@@ -18,6 +18,7 @@ private:
     bool textHasBeenUpdated = true;
 public:
     InputPromptState(SDL_Renderer* renderer, SDL_Window* window, int* timer, std::stack<GameState*>* stateStack, TTF_Font* font, std::string message);
+    ~InputPromptState();
     void handleInput();
     void render();
     

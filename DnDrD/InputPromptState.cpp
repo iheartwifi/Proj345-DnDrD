@@ -10,12 +10,15 @@
 
 InputPromptState::InputPromptState(SDL_Renderer* renderer, SDL_Window* window, int* timer, std::stack<GameState*>* stateStack, TTF_Font* font, std::string message) :
 MessageDisplayerState(renderer, window, timer, stateStack, font, message){
-    this->workingString = "a";
+    this->workingString = "";
+    SDL_StartTextInput();
+}
+InputPromptState::~InputPromptState(){
+    SDL_StopTextInput();
 }
 
 void InputPromptState::handleInput(){
     //check for event
-    SDL_StartTextInput();
     while ( SDL_PollEvent(&state_event) )
     {
         
@@ -41,6 +44,7 @@ void InputPromptState::handleInput(){
                 }
                 else if(state_event.key.keysym.sym == SDLK_v){
                     workingString = SDL_GetClipboardText();
+                    textHasBeenUpdated = true;
                 }
             }
             //else handle other key presses
@@ -63,32 +67,37 @@ void InputPromptState::handleInput(){
         }
         else if(state_event.type == SDL_TEXTINPUT){
             workingString += state_event.text.text;
+            textHasBeenUpdated = true;
         }
     }
-    SDL_StopTextInput();
     return;
 }
 void InputPromptState::render(){
-    SDL_RenderCopy(game_renderer, state_textures[0].texture, &state_textures[0].srcrect, &state_textures[0].dstrect);
-    SDL_RenderCopy(game_renderer, state_textures[1].texture, nullptr, &state_textures[1].dstrect);
-    
-    //render working text
-    if(workingString.length() != 0){
-        //make new texture from text
-        SDL_Surface* addSurface = TTF_RenderText_Blended_Wrapped( game_font, workingString.c_str(), COLOUR_BLACK, 600 );
-        SDL_Rect dstrect = {(WINDOW_WIDTH - addSurface->w)/2,7*BLOCK_SIZE,addSurface->w,addSurface->h};
-        //fSDL_Rect srcrect = {0,0,0,0};
-        SDL_Texture* textTexture = SDL_CreateTextureFromSurface(game_renderer, addSurface);
+    //only rerender if text has been updated.
+    if(textHasBeenUpdated){
+        textHasBeenUpdated = false;
+        //render scroll and prompt text
+        SDL_RenderCopy(game_renderer, state_textures[0].texture, &state_textures[0].srcrect, &state_textures[0].dstrect);
+        SDL_RenderCopy(game_renderer, state_textures[1].texture, nullptr, &state_textures[1].dstrect);
         
-        //render text
-        SDL_RenderCopy(game_renderer, textTexture, nullptr, &dstrect);
+        //render working text
+        if(workingString.length() != 0){
+            //make new texture from text
+            SDL_Surface* addSurface = TTF_RenderText_Blended_Wrapped( game_font, workingString.c_str(), COLOUR_BLACK, 600 );
+            SDL_Rect dstrect = {(WINDOW_WIDTH - addSurface->w)/2,7*BLOCK_SIZE,addSurface->w,addSurface->h};
+            SDL_Texture* textTexture = SDL_CreateTextureFromSurface(game_renderer, addSurface);
+            
+            //render text
+            SDL_RenderCopy(game_renderer, textTexture, nullptr, &dstrect);
+            
+            //delete surface and texture
+            SDL_FreeSurface(addSurface);
+            SDL_DestroyTexture(textTexture);
+        }
         
-        //delete surface and texture
-        SDL_FreeSurface(addSurface);
-        SDL_DestroyTexture(textTexture);
+        
+        SDL_RenderPresent(game_renderer);
+        SDL_RenderClear(game_renderer);
     }
     
-    
-    SDL_RenderPresent(game_renderer);
-    SDL_RenderClear(game_renderer);
 }
