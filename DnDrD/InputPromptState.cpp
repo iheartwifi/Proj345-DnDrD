@@ -7,14 +7,18 @@
 //
 
 #include "InputPromptState.hpp"
+int InputPromptState::numberInitialized  = 0;
 
 InputPromptState::InputPromptState(SDL_Renderer* renderer, SDL_Window* window, int* timer, std::stack<GameState*>* stateStack, TTF_Font* font, std::string message) :
 MessageDisplayerState(renderer, window, timer, stateStack, font, message){
     this->workingString = "";
     SDL_StartTextInput();
+    numberInitialized++;
 }
 InputPromptState::~InputPromptState(){
-    SDL_StopTextInput();
+    if(--numberInitialized == 0){
+        SDL_StopTextInput();
+    }
 }
 
 void InputPromptState::handleInput(){
@@ -59,6 +63,10 @@ void InputPromptState::handleInput(){
                             textHasBeenUpdated = true;
                         }
                         break;
+                    case SDLK_RETURN:
+                        acceptString();
+                        textHasBeenUpdated = true;
+                        break;
                     default:
                         break;
                 }
@@ -100,4 +108,11 @@ void InputPromptState::render(){
         SDL_RenderClear(game_renderer);
     }
     
+    //this lets this state rerender itself when the state above it pops
+    if(game_stateStack->top() != this){
+        textHasBeenUpdated = true;
+    }
+}
+void InputPromptState::acceptString(){
+    removeSelfFromStateStack();
 }

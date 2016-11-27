@@ -45,6 +45,7 @@ public:
     virtual void handleInput() = 0;
     virtual void render() = 0;
     virtual void run();
+    virtual void extraPreRenderLogic();
     
     void endGame();
     bool checkIfInside(SDL_Rect dstrect, int x, int y);

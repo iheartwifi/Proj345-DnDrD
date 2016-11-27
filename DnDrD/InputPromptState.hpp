@@ -14,16 +14,17 @@
 
 class InputPromptState : public MessageDisplayerState{
 private:
-    std::string workingString;
     bool textHasBeenUpdated = true;
 public:
+    std::string workingString;
+    static int numberInitialized;
+    
     InputPromptState(SDL_Renderer* renderer, SDL_Window* window, int* timer, std::stack<GameState*>* stateStack, TTF_Font* font, std::string message);
     ~InputPromptState();
     void handleInput();
     void render();
-    
+    virtual void acceptString();
+
 };
-
-
 
 #endif /* InputPromptState_hpp */

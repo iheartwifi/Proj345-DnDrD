@@ -11,6 +11,8 @@
 #include "MapEditorState.hpp"
 #include "MessageDisplayerState.hpp"
 #include "InputPromptState.hpp"
+#include "SetNewMapSizeState.hpp"
+#include "MapLoaderState.hpp"
 
 MainMenuState::MainMenuState(SDL_Renderer* renderer, SDL_Window* window, int* timer, std::stack<GameState*>* stateStack, TTF_Font* font) : GameState(renderer,window,timer, stateStack, font){
     SDL_Surface*  addSurface = NULL;
@@ -124,11 +126,11 @@ void MainMenuState::handleInput(){
             GameState* nextState = NULL;
             switch (selection) {
                 case 1:
-                    nextState = new PlayGameState(game_renderer,game_window,game_timer,game_stateStack, game_font);
+                    nextState = new MapLoaderState(game_renderer,game_window,game_timer,game_stateStack, game_font, PLAY_GAME);
                     game_stateStack->push(nextState);
                     break;
                 case 2:
-                    nextState = new MapEditorState(game_renderer,game_window,game_timer,game_stateStack, game_font);
+                    nextState = new MapLoaderState(game_renderer, game_window, game_timer, game_stateStack, game_font, MAP_EDITOR);
                     game_stateStack->push(nextState);
                     break;
                 case 3:

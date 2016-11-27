@@ -8,7 +8,7 @@
 
 #include "PlayGameState.hpp"
 
-PlayGameState::PlayGameState(SDL_Renderer* renderer, SDL_Window* window, int* timer, std::stack<GameState*>* stateStack, TTF_Font* font) : vMapState(renderer,window,timer, stateStack, font){
+PlayGameState::PlayGameState(SDL_Renderer* renderer, SDL_Window* window, int* timer, std::stack<GameState*>* stateStack, TTF_Font* font, GameMap2* map) : vMapState(renderer,window,timer, stateStack, font, map){
     
 }
 void PlayGameState::handleInput(){

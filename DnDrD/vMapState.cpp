@@ -8,17 +8,14 @@
 
 #include "vMapState.hpp"
 
-vMapState::vMapState(SDL_Renderer* renderer, SDL_Window* window, int* timer, std::stack<GameState*>* stateStack, TTF_Font* font) : GameState(renderer,window,timer, stateStack, font){
+vMapState::vMapState(SDL_Renderer* renderer, SDL_Window* window, int* timer, std::stack<GameState*>* stateStack, TTF_Font* font, GameMap2* map) : GameState(renderer,window,timer, stateStack, font){
     
     //load default map and hero
     //TODO: allow specific map & hero to be loaded
     {
-        state_map = new GameMap2(15, 15, Coordinate {0,0}, Coordinate {14,14}, nullptr, nullptr);
-        state_hero = new Hero();
-        state_map->occupyBlock(Coordinate{4,6}, state_hero);
-            state_map->fillcell(Coordinate{0, 14}, GRASS);
-            state_map->fillcell(Coordinate{0, 13}, WALL);
-            state_map->fillcell(Coordinate{0, 12}, WATER);
+        state_map = map;
+        //state_hero = new Hero();
+        //state_map->occupyBlock(state_map->getStartingBlock(), state_hero);
     }
     
     //set initial dstrect of each block
@@ -84,6 +81,70 @@ vMapState::vMapState(SDL_Renderer* renderer, SDL_Window* window, int* timer, std
         
         state_textures.push_back(addStruct);
         
+        //add set start button for map editor image
+        addSurface = IMG_Load(PATH_TO_MAP_EDITOR_SET_START);
+        addStruct.dstrect = {BLOCK_SIZE * i++,WINDOW_HEIGHT-BLOCK_SIZE,BLOCK_SIZE,BLOCK_SIZE};
+        addStruct.srcrect = {0,0,addSurface->w,addSurface->h};
+        addStruct.texture = SDL_CreateTextureFromSurface(renderer, addSurface);
+        SDL_FreeSurface(addSurface);
+        
+        state_textures.push_back(addStruct);
+        
+        //add set end button for map editor image
+        addSurface = IMG_Load(PATH_TO_MAP_EDITOR_SET_END);
+        addStruct.dstrect = {BLOCK_SIZE * i++,WINDOW_HEIGHT-BLOCK_SIZE,BLOCK_SIZE,BLOCK_SIZE};
+        addStruct.srcrect = {0,0,addSurface->w,addSurface->h};
+        addStruct.texture = SDL_CreateTextureFromSurface(renderer, addSurface);
+        SDL_FreeSurface(addSurface);
+        
+        state_textures.push_back(addStruct);
+        
+        //add item button for map editor image
+        addSurface = IMG_Load(PATH_TO_MAP_EDITOR_ADD_ITEM);
+        addStruct.dstrect = {BLOCK_SIZE * i++,WINDOW_HEIGHT-BLOCK_SIZE,BLOCK_SIZE,BLOCK_SIZE};
+        addStruct.srcrect = {0,0,addSurface->w,addSurface->h};
+        addStruct.texture = SDL_CreateTextureFromSurface(renderer, addSurface);
+        SDL_FreeSurface(addSurface);
+        
+        state_textures.push_back(addStruct);
+        
+        //add character button for map editor image
+        addSurface = IMG_Load(PATH_TO_MAP_EDITOR_ADD_CHARACTER);
+        addStruct.dstrect = {BLOCK_SIZE * i++,WINDOW_HEIGHT-BLOCK_SIZE,BLOCK_SIZE,BLOCK_SIZE};
+        addStruct.srcrect = {0,0,addSurface->w,addSurface->h};
+        addStruct.texture = SDL_CreateTextureFromSurface(renderer, addSurface);
+        SDL_FreeSurface(addSurface);
+        
+        state_textures.push_back(addStruct);
+        
+        i=0;
+        //add next map for map editor image
+        addSurface = IMG_Load(PATH_TO_MAP_EDITOR_NEXT);
+        addStruct.dstrect = {WINDOW_WIDTH-2*(BLOCK_SIZE * ++i),WINDOW_HEIGHT-BLOCK_SIZE,2*BLOCK_SIZE,BLOCK_SIZE};
+        addStruct.srcrect = {0,0,addSurface->w,addSurface->h};
+        addStruct.texture = SDL_CreateTextureFromSurface(renderer, addSurface);
+        SDL_FreeSurface(addSurface);
+        
+        state_textures.push_back(addStruct);
+        
+        //add exit for map editor image
+        addSurface = IMG_Load(PATH_TO_MAP_EDITOR_EXIT);
+        addStruct.dstrect = {WINDOW_WIDTH-2*(BLOCK_SIZE * ++i),WINDOW_HEIGHT-BLOCK_SIZE,2*BLOCK_SIZE,BLOCK_SIZE};
+        addStruct.srcrect = {0,0,addSurface->w,addSurface->h};
+        addStruct.texture = SDL_CreateTextureFromSurface(renderer, addSurface);
+        SDL_FreeSurface(addSurface);
+        
+        state_textures.push_back(addStruct);
+        
+        //glowing square image
+        addSurface = IMG_Load(PATH_TO_GLOWING_SQAURE);
+        addStruct.dstrect = {0,0,0,0};
+        addStruct.srcrect = {0,0,addSurface->w,addSurface->h};
+        addStruct.texture = SDL_CreateTextureFromSurface(renderer, addSurface);
+        SDL_FreeSurface(addSurface);
+        
+        state_textures.push_back(addStruct);
+        
     }
 }
 vMapState::~vMapState(){
@@ -120,7 +181,12 @@ void vMapState::render(){
                     }
                     //render ground of block
                     SDL_RenderCopy(game_renderer, state_textures[texType].texture, &state_textures[texType].srcrect, &state_map->getBlock(c, r)->dstrect);
-    
+                    
+                    //render glowing sqaure for endblock
+                    if(state_map->getEndingBlock().x == c && state_map->getEndingBlock().y == r){
+                        SDL_RenderCopy(game_renderer, state_textures[11].texture, &state_textures[11].srcrect, &state_map->getBlock(c, r)->dstrect);
+                    }
+                    
                     //TODO: Render stuff contained by block
     
                     //render hero

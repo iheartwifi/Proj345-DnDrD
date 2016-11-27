@@ -27,21 +27,28 @@ void GameState::run(){
    
     this->handleInput();
     
-    //limit frame rate to FRAME_RATE
-    if ( (SDL_GetTicks() - *game_timer) >= FRAME_RATE )
-    {
-        this->render();
-        
-        *game_timer = SDL_GetTicks();
+    extraPreRenderLogic();
+    if(!readyToDie){
+        //limit frame rate to FRAME_RATE
+        if ( (SDL_GetTicks() - *game_timer) >= FRAME_RATE )
+        {
+            this->render();
+            
+            *game_timer = SDL_GetTicks();
+        }
+        else{
+            //Wait remaining time
+            SDL_Delay( FRAME_RATE - (SDL_GetTicks() - *game_timer) + 1 );
+        }
     }
     else{
-        //Wait remaining time
-        SDL_Delay( FRAME_RATE - (SDL_GetTicks() - *game_timer) + 1 );
-    }
-    
-    if(readyToDie){
         delete this;
     }
+    
+}
+
+void GameState::extraPreRenderLogic(){
+    //do nothing
 }
 
 void GameState::removeSelfFromStateStack(){
@@ -52,7 +59,7 @@ void GameState::removeSelfFromStateStack(){
 
 void GameState::endGame(){
     while(!game_stateStack->empty()){
-        game_stateStack->pop();
+        game_stateStack->top()->removeSelfFromStateStack();
     }
 }
 
