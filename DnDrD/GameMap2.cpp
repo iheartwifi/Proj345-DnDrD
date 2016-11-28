@@ -265,8 +265,8 @@ void GameMap2::BlockData::setVisited(){
 //does prepwork before calling validatePathHelper() which checks the path recursively
 bool GameMap2::validatePath(Coordinate a, Coordinate b){
     //reset v
-    for(int c = 0; c < arrayDimensions.y; c++){
-        for(int r = 0; r < arrayDimensions.x; r++){
+    for(int c = 0; c < arrayDimensions.x; c++){
+        for(int r = 0; r < arrayDimensions.y; r++){
             getBlock(c, r)->resetV();
         }
     }
@@ -357,7 +357,7 @@ std::ostream &operator<<(std::ostream& out, GameMap2 const& gm){
     //
     for(int c = 0; c < gm.arrayDimensions.x; c++){
         for(int r = 0; r < gm.arrayDimensions.y; r++){
-            out << *gm.getBlock(r, c) << std::endl;
+            out << *gm.getBlock(c, r) << std::endl;
         }
     }
     //

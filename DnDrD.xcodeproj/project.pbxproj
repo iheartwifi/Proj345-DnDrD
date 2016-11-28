@@ -93,6 +93,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5228E0481DEBDD2400E2DF08 /* Communication */ = {
+			isa = PBXGroup;
+			children = (
+				524B44E61DE7947D00042C70 /* MessageDisplayerState.cpp */,
+				524B44E71DE7947D00042C70 /* MessageDisplayerState.hpp */,
+				52F5CB4C1DE9427E00ADF0EE /* InputPromptState.cpp */,
+				52F5CB4D1DE9427E00ADF0EE /* InputPromptState.hpp */,
+			);
+			name = Communication;
+			sourceTree = "<group>";
+		};
+		5228E0491DEBDD4C00E2DF08 /* Play Game + Map Editor */ = {
+			isa = PBXGroup;
+			children = (
+				524B119A1DE7830900E44D1A /* vMapState.cpp */,
+				524B119B1DE7830900E44D1A /* vMapState.hpp */,
+				524794911DEB96F30010AAF2 /* MapLoaderState.cpp */,
+				524794921DEB96F30010AAF2 /* MapLoaderState.hpp */,
+				5247948A1DEB89B80010AAF2 /* MapEditor */,
+				524B11981DE7830900E44D1A /* PlayGameState.cpp */,
+				524B11991DE7830900E44D1A /* PlayGameState.hpp */,
+			);
+			name = "Play Game + Map Editor";
+			sourceTree = "<group>";
+		};
 		5247948A1DEB89B80010AAF2 /* MapEditor */ = {
 			isa = PBXGroup;
 			children = (
@@ -115,17 +140,8 @@
 				524B11931DE7830900E44D1A /* GameState.hpp */,
 				524B11941DE7830900E44D1A /* MainMenuState.cpp */,
 				524B11951DE7830900E44D1A /* MainMenuState.hpp */,
-				524B119A1DE7830900E44D1A /* vMapState.cpp */,
-				524B119B1DE7830900E44D1A /* vMapState.hpp */,
-				5247948A1DEB89B80010AAF2 /* MapEditor */,
-				524B11981DE7830900E44D1A /* PlayGameState.cpp */,
-				524B11991DE7830900E44D1A /* PlayGameState.hpp */,
-				524B44E61DE7947D00042C70 /* MessageDisplayerState.cpp */,
-				524B44E71DE7947D00042C70 /* MessageDisplayerState.hpp */,
-				52F5CB4C1DE9427E00ADF0EE /* InputPromptState.cpp */,
-				52F5CB4D1DE9427E00ADF0EE /* InputPromptState.hpp */,
-				524794911DEB96F30010AAF2 /* MapLoaderState.cpp */,
-				524794921DEB96F30010AAF2 /* MapLoaderState.hpp */,
+				5228E0491DEBDD4C00E2DF08 /* Play Game + Map Editor */,
+				5228E0481DEBDD2400E2DF08 /* Communication */,
 			);
 			name = GameStates;
 			sourceTree = "<group>";
