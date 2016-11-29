@@ -35,7 +35,7 @@
 #define MENU_BUTTON_Y_OFFSET 50
 #define MENU_BUTTON_SPACING 40
 
-#define ITEM_EDITOR_BUTTON_ROWS 5
+#define ITEM_EDITOR_BUTTON_ROWS 6
 
 //sprite maps defines
 #define STONE_GROUND_X_SELECTION 0
@@ -80,6 +80,7 @@
 #define PATH_TO_ITEM_EDITOR_CHA "item_editor_buttons/change_cha.png"
 #define PATH_TO_ITEM_EDITOR_ARMOUR "item_editor_buttons/change_armour.png"
 #define PATH_TO_ITEM_EDITOR_DMG "item_editor_buttons/change_dmg.png"
+#define PATH_TO_ITEM_EDITOR_ATK "item_editor_buttons/change_atk.png"
 #define PATH_TO_ITEM_EDITOR_SAVE "item_editor_buttons/save_exit.png"
 
 #endif /* defines_h */

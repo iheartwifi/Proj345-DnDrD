@@ -33,7 +33,7 @@ void ItemLoaderState::acceptString(){
         GameState* nextState;
         switch(destination){
             case ITEM_EDITOR:
-                nextState = new ItemEditorState(game_renderer, game_window, game_timer, game_stateStack, game_font);
+                nextState = new ItemEditorState(game_renderer, game_window, game_timer, game_stateStack, game_font, i);
                 break;
             case CHAR_EDITOR:
                 /*
