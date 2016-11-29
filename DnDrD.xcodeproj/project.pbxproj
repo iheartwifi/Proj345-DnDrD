@@ -20,6 +20,9 @@
 		524B44E81DE7947D00042C70 /* MessageDisplayerState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 524B44E61DE7947D00042C70 /* MessageDisplayerState.cpp */; };
 		5297AF6E1DD6C61E00B8C3EF /* GameMap2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5297AF6A1DD6C61E00B8C3EF /* GameMap2.cpp */; };
 		5297AF6F1DD6C61E00B8C3EF /* GameObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5297AF6C1DD6C61E00B8C3EF /* GameObject.cpp */; };
+		52B1708B1DEDFB00009E0658 /* Item.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 52B170891DEDFB00009E0658 /* Item.cpp */; };
+		52B1708E1DEE020E009E0658 /* ItemLoaderState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 52B1708C1DEE020E009E0658 /* ItemLoaderState.cpp */; };
+		52B170A61DEE1000009E0658 /* ItemEditorState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 52B170A41DEE1000009E0658 /* ItemEditorState.cpp */; };
 		52ECE0431DD62FC1002C3F8E /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 52ECE0421DD62FC1002C3F8E /* main.cpp */; };
 		52ECE04C1DD62FDA002C3F8E /* SDL2_image.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52ECE04A1DD62FDA002C3F8E /* SDL2_image.framework */; };
 		52ECE04D1DD62FDA002C3F8E /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52ECE04B1DD62FDA002C3F8E /* SDL2.framework */; };
@@ -68,6 +71,13 @@
 		5297AF6B1DD6C61E00B8C3EF /* GameMap2.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GameMap2.hpp; sourceTree = "<group>"; };
 		5297AF6C1DD6C61E00B8C3EF /* GameObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameObject.cpp; sourceTree = "<group>"; };
 		5297AF6D1DD6C61E00B8C3EF /* GameObject.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GameObject.hpp; sourceTree = "<group>"; };
+		52B170891DEDFB00009E0658 /* Item.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Item.cpp; sourceTree = "<group>"; };
+		52B1708A1DEDFB00009E0658 /* Item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Item.h; sourceTree = "<group>"; };
+		52B1708C1DEE020E009E0658 /* ItemLoaderState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ItemLoaderState.cpp; sourceTree = "<group>"; };
+		52B1708D1DEE020E009E0658 /* ItemLoaderState.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ItemLoaderState.hpp; sourceTree = "<group>"; };
+		52B170901DEE02FF009E0658 /* DestinationEnum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DestinationEnum.h; sourceTree = "<group>"; };
+		52B170A41DEE1000009E0658 /* ItemEditorState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ItemEditorState.cpp; sourceTree = "<group>"; };
+		52B170A51DEE1000009E0658 /* ItemEditorState.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ItemEditorState.hpp; sourceTree = "<group>"; };
 		52ECE03F1DD62FC1002C3F8E /* DnDrD */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = DnDrD; sourceTree = BUILT_PRODUCTS_DIR; };
 		52ECE0421DD62FC1002C3F8E /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		52ECE04A1DD62FDA002C3F8E /* SDL2_image.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_image.framework; path = ../../../../../../../Library/Frameworks/SDL2_image.framework; sourceTree = "<group>"; };
@@ -109,8 +119,6 @@
 			children = (
 				524B119A1DE7830900E44D1A /* vMapState.cpp */,
 				524B119B1DE7830900E44D1A /* vMapState.hpp */,
-				524794911DEB96F30010AAF2 /* MapLoaderState.cpp */,
-				524794921DEB96F30010AAF2 /* MapLoaderState.hpp */,
 				5247948A1DEB89B80010AAF2 /* MapEditor */,
 				524B11981DE7830900E44D1A /* PlayGameState.cpp */,
 				524B11991DE7830900E44D1A /* PlayGameState.hpp */,
@@ -140,6 +148,9 @@
 				524B11931DE7830900E44D1A /* GameState.hpp */,
 				524B11941DE7830900E44D1A /* MainMenuState.cpp */,
 				524B11951DE7830900E44D1A /* MainMenuState.hpp */,
+				52B170A41DEE1000009E0658 /* ItemEditorState.cpp */,
+				52B170A51DEE1000009E0658 /* ItemEditorState.hpp */,
+				52B1708F1DEE02E3009E0658 /* Loaders */,
 				5228E0491DEBDD4C00E2DF08 /* Play Game + Map Editor */,
 				5228E0481DEBDD2400E2DF08 /* Communication */,
 			);
@@ -151,13 +162,43 @@
 			children = (
 				5297AF6A1DD6C61E00B8C3EF /* GameMap2.cpp */,
 				5297AF6B1DD6C61E00B8C3EF /* GameMap2.hpp */,
-				5297AF6C1DD6C61E00B8C3EF /* GameObject.cpp */,
-				5297AF6D1DD6C61E00B8C3EF /* GameObject.hpp */,
-				521229001DD9118E00EC6AED /* Hero.cpp */,
-				521229011DD9118E00EC6AED /* Hero.hpp */,
+				52B170871DEDFAB4009E0658 /* GameObjects */,
 				521229031DD9193100EC6AED /* Coordinate Struct.h */,
 			);
 			name = GameMap;
+			sourceTree = "<group>";
+		};
+		52B170871DEDFAB4009E0658 /* GameObjects */ = {
+			isa = PBXGroup;
+			children = (
+				5297AF6C1DD6C61E00B8C3EF /* GameObject.cpp */,
+				5297AF6D1DD6C61E00B8C3EF /* GameObject.hpp */,
+				52B170891DEDFB00009E0658 /* Item.cpp */,
+				52B1708A1DEDFB00009E0658 /* Item.h */,
+				52B170881DEDFABF009E0658 /* Characters */,
+			);
+			name = GameObjects;
+			sourceTree = "<group>";
+		};
+		52B170881DEDFABF009E0658 /* Characters */ = {
+			isa = PBXGroup;
+			children = (
+				521229001DD9118E00EC6AED /* Hero.cpp */,
+				521229011DD9118E00EC6AED /* Hero.hpp */,
+			);
+			name = Characters;
+			sourceTree = "<group>";
+		};
+		52B1708F1DEE02E3009E0658 /* Loaders */ = {
+			isa = PBXGroup;
+			children = (
+				52B170901DEE02FF009E0658 /* DestinationEnum.h */,
+				52B1708C1DEE020E009E0658 /* ItemLoaderState.cpp */,
+				52B1708D1DEE020E009E0658 /* ItemLoaderState.hpp */,
+				524794911DEB96F30010AAF2 /* MapLoaderState.cpp */,
+				524794921DEB96F30010AAF2 /* MapLoaderState.hpp */,
+			);
+			name = Loaders;
 			sourceTree = "<group>";
 		};
 		52ECE0361DD62FC1002C3F8E = {
@@ -265,8 +306,11 @@
 				5297AF6E1DD6C61E00B8C3EF /* GameMap2.cpp in Sources */,
 				524B119F1DE7830900E44D1A /* PlayGameState.cpp in Sources */,
 				52ECE0431DD62FC1002C3F8E /* main.cpp in Sources */,
+				52B1708B1DEDFB00009E0658 /* Item.cpp in Sources */,
 				524B44E81DE7947D00042C70 /* MessageDisplayerState.cpp in Sources */,
 				52F5CB4E1DE9427E00ADF0EE /* InputPromptState.cpp in Sources */,
+				52B170A61DEE1000009E0658 /* ItemEditorState.cpp in Sources */,
+				52B1708E1DEE020E009E0658 /* ItemLoaderState.cpp in Sources */,
 				521229021DD9118E00EC6AED /* Hero.cpp in Sources */,
 				524794931DEB96F30010AAF2 /* MapLoaderState.cpp in Sources */,
 				524794901DEB8BC30010AAF2 /* SetNextMapSizeState.cpp in Sources */,

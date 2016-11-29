@@ -11,11 +11,7 @@
 
 #include <stdio.h>
 #include "InputPromptState.hpp"
-
-enum destination{
-    PLAY_GAME,
-    MAP_EDITOR
-};
+#include "DestinationEnum.h"
 
 class MapLoaderState : public InputPromptState{
 public:

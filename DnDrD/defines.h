@@ -35,6 +35,8 @@
 #define MENU_BUTTON_Y_OFFSET 50
 #define MENU_BUTTON_SPACING 40
 
+#define ITEM_EDITOR_BUTTON_ROWS 5
+
 //sprite maps defines
 #define STONE_GROUND_X_SELECTION 0
 #define STONE_GROUND_Y_SELECTION 0
@@ -68,5 +70,16 @@
 #define PATH_TO_MAIN_MENU_BUTTON_MAP_EDITOR "menu_buttons/main_mapeditor.png"
 #define PATH_TO_MAIN_MENU_BUTTON_NEW_GAME "menu_buttons/main_newgame.png"
 #define PATH_TO_BLANK_SCROLL "blank_scroll.png"
+#define PATH_TO_ITEM_EDITOR_NAME "item_editor_buttons/change_name.png"
+#define PATH_TO_ITEM_EDITOR_TYPE "item_editor_buttons/change_type.png"
+#define PATH_TO_ITEM_EDITOR_STR "item_editor_buttons/change_str.png"
+#define PATH_TO_ITEM_EDITOR_DEX "item_editor_buttons/change_dex.png"
+#define PATH_TO_ITEM_EDITOR_CON "item_editor_buttons/change_con.png"
+#define PATH_TO_ITEM_EDITOR_INT "item_editor_buttons/change_int.png"
+#define PATH_TO_ITEM_EDITOR_WIS "item_editor_buttons/change_wis.png"
+#define PATH_TO_ITEM_EDITOR_CHA "item_editor_buttons/change_cha.png"
+#define PATH_TO_ITEM_EDITOR_ARMOUR "item_editor_buttons/change_armour.png"
+#define PATH_TO_ITEM_EDITOR_DMG "item_editor_buttons/change_dmg.png"
+#define PATH_TO_ITEM_EDITOR_SAVE "item_editor_buttons/save_exit.png"
 
 #endif /* defines_h */
