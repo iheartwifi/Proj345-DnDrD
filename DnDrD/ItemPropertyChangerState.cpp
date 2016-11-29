@@ -53,7 +53,7 @@ void ItemPropertyChangerState::acceptString(){
                 else if(workingString == "boots"){
                     itemToEdit->setType(BOOTS);
                 }
-                else if(workingString == "weaopn"){
+                else if(workingString == "weapon"){
                     itemToEdit->setType(WEAPON);
                 }
                 break;
