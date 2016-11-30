@@ -8,12 +8,13 @@
 
 #include "GameState.hpp"
 
-GameState::GameState(SDL_Renderer* renderer, SDL_Window* window, int* timer, std::stack<GameState*>* stateStack, TTF_Font* font){
+GameState::GameState(SDL_Renderer* renderer, SDL_Window* window, int* timer, std::stack<GameState*>* stateStack, TTF_Font* font, GameLog* game_log){
     this->game_renderer = renderer;
     this->game_window = window;
     this->game_timer = timer;
     this->game_stateStack = stateStack;
     this->game_font = font;
+    this->game_log = game_log;
 }
 GameState::~GameState(){
     //delete textures

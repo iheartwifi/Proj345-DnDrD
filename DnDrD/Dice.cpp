@@ -12,8 +12,6 @@
 #include <regex>
 #include <random> // for mersenne twister random number generator
 
-//Dice::Dice(){srand((unsigned)time(0));} not used
-
 //computes any dice rolls
 int Dice::roll(int n, int d, int z){
     

@@ -8,7 +8,7 @@
 
 #include "vMapState.hpp"
 
-vMapState::vMapState(SDL_Renderer* renderer, SDL_Window* window, int* timer, std::stack<GameState*>* stateStack, TTF_Font* font, GameMap2* map) : GameState(renderer,window,timer, stateStack, font){
+vMapState::vMapState(SDL_Renderer* renderer, SDL_Window* window, int* timer, std::stack<GameState*>* stateStack, TTF_Font* font, GameMap2* map, GameLog* game_log) : GameState(renderer,window,timer, stateStack, font, game_log){
     
     //load default map and hero
     //TODO: allow specific map & hero to be loaded

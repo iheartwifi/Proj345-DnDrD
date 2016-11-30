@@ -16,7 +16,7 @@
 #include "ItemLoaderState.hpp"
 #include "CharacterLoaderState.hpp"
 
-MainMenuState::MainMenuState(SDL_Renderer* renderer, SDL_Window* window, int* timer, std::stack<GameState*>* stateStack, TTF_Font* font) : GameState(renderer,window,timer, stateStack, font){
+MainMenuState::MainMenuState(SDL_Renderer* renderer, SDL_Window* window, int* timer, std::stack<GameState*>* stateStack, TTF_Font* font, GameLog* game_log) : GameState(renderer,window,timer, stateStack, font, game_log){
     SDL_Surface*  addSurface = NULL;
     SDL_Rect dstrect = {0,0,0,0};
     SDL_Rect srcrect = {0,0,0,0};
@@ -141,7 +141,7 @@ void MainMenuState::handleInput(){
                     game_stateStack->push(nextState);
                     break;
                 case 4:
-                    nextState = new ItemLoaderState(game_renderer, game_window, game_timer, game_stateStack, game_font, ITEM_EDITOR);
+                    nextState = new ItemLoaderState(game_renderer, game_window, game_timer, game_stateStack, game_font, ITEM_EDITOR, game_log);
                     game_stateStack->push(nextState);
                     break;
                 case 5:

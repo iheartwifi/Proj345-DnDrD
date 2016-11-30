@@ -18,7 +18,7 @@ class MessageDisplayerState : public GameState{
     std::string messageToDisplay = "";
 public:
     TTF_Font* game_font;
-    MessageDisplayerState(SDL_Renderer* renderer, SDL_Window* window, int* timer, std::stack<GameState*>* stateStack, TTF_Font* font, std::string message);
+    MessageDisplayerState(SDL_Renderer* renderer, SDL_Window* window, int* timer, std::stack<GameState*>* stateStack, TTF_Font* font, std::string message, GameLog* game_log);
     void handleInput();
     void render();
     

@@ -11,7 +11,7 @@
 #include <sstream>
 #include "MapEditorState.hpp"
 
-SetNextMapSizeState::SetNextMapSizeState(SDL_Renderer* renderer, SDL_Window* window, int* timer, std::stack<GameState*>* stateStack, TTF_Font* font, GameMap2* map) : InputPromptState(renderer,window,timer,stateStack,font, "Please enter the dimensions of the new map in the format #x#. Ex: 10x10"){
+SetNextMapSizeState::SetNextMapSizeState(SDL_Renderer* renderer, SDL_Window* window, int* timer, std::stack<GameState*>* stateStack, TTF_Font* font, GameMap2* map) : InputPromptState(renderer,window,timer,stateStack,font, "Please enter the dimensions of the new map in the format #x#. Ex: 10x10", game_log){
     this->map = map;
 }
 void SetNextMapSizeState::acceptString(){
@@ -19,7 +19,7 @@ void SetNextMapSizeState::acceptString(){
     bool match = regex_match(workingString, std::regex("^\\d+x\\d+$"));
     if(!match){
         //display error screen
-        GameState *nextState = new MessageDisplayerState(game_renderer, game_window, game_timer, game_stateStack, game_font, "Input does not follow the correct format.");
+        GameState *nextState = new MessageDisplayerState(game_renderer, game_window, game_timer, game_stateStack, game_font, "Input does not follow the correct format.", game_log);
         game_stateStack->push(nextState);
         
         return;
@@ -35,7 +35,7 @@ void SetNextMapSizeState::acceptString(){
         *sstream >> height;
         
         if(width < 3 || height < 3){
-            GameState *nextState = new MessageDisplayerState(game_renderer, game_window, game_timer, game_stateStack, game_font, "Map must be a minimum of 3x3.");
+            GameState *nextState = new MessageDisplayerState(game_renderer, game_window, game_timer, game_stateStack, game_font, "Map must be a minimum of 3x3.", game_log);
             game_stateStack->push(nextState);
             return;
         }

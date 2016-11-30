@@ -15,7 +15,7 @@
 #include "CharacterEditorState.hpp"
 #include "ItemEditorState.hpp"
 
-CharacterLoaderState::CharacterLoaderState(SDL_Renderer* renderer, SDL_Window* window, int* timer, std::stack<GameState*>* stateStack, TTF_Font* font, int destination) : InputPromptState(renderer,window,timer,stateStack,font,"Please enter the name of the character to load. Do not include the .txt extension."){
+CharacterLoaderState::CharacterLoaderState(SDL_Renderer* renderer, SDL_Window* window, int* timer, std::stack<GameState*>* stateStack, TTF_Font* font, int destination) : InputPromptState(renderer,window,timer,stateStack,font,"Please enter the name of the character to load. Do not include the .txt extension.", game_log){
     this->destination = destination;
 }
 
@@ -38,7 +38,7 @@ void CharacterLoaderState::acceptString(){
                /*nextState = new ItemEditorState(game_renderer, game_window, game_timer, game_stateStack, game_font, i);*/
                 break;
             case CHAR_EDITOR:
-                nextState = new CharacterEditorState(game_renderer, game_window, game_timer, game_stateStack, game_font, i);
+                nextState = new CharacterEditorState(game_renderer, game_window, game_timer, game_stateStack, game_font, i, game_log);
                 break;
             default: break;
         }
@@ -46,7 +46,7 @@ void CharacterLoaderState::acceptString(){
     }
     else{
         //display error screen
-        GameState *nextState = new MessageDisplayerState(game_renderer, game_window, game_timer, game_stateStack, game_font, "You must enter an item name to load.");
+        GameState *nextState = new MessageDisplayerState(game_renderer, game_window, game_timer, game_stateStack, game_font, "You must enter an item name to load.", game_log);
         game_stateStack->push(nextState);
     }
     

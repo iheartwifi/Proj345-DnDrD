@@ -31,7 +31,7 @@ private:
     character* characterToedit;
     characterEditorButtons buttonPressed;
 public:
-    CharacterPropertyChangerState(SDL_Renderer* renderer, SDL_Window* window, int* timer, std::stack<GameState*>* stateStack, TTF_Font* font, std::string message, character* character, characterEditorButtons buttonPressed);
+    CharacterPropertyChangerState(SDL_Renderer* renderer, SDL_Window* window, int* timer, std::stack<GameState*>* stateStack, TTF_Font* font, std::string message, character* character, characterEditorButtons buttonPressed,GameLog* game_log);
     ~CharacterPropertyChangerState();
     
     void acceptString();

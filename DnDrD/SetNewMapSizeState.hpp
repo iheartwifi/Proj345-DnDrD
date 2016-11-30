@@ -16,7 +16,7 @@
 class SetNewMapSizeState : public InputPromptState{
     void acceptString();
 public:
-    SetNewMapSizeState(SDL_Renderer* renderer, SDL_Window* window, int* timer, std::stack<GameState*>* stateStack, TTF_Font* font);
+    SetNewMapSizeState(SDL_Renderer* renderer, SDL_Window* window, int* timer, std::stack<GameState*>* stateStack, TTF_Font* font, GameLog* game_log);
 };
 
 

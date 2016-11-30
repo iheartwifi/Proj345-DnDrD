@@ -8,7 +8,7 @@
 
 #include "SaveMapState.hpp"
 #include <fstream>
-SaveMapState::SaveMapState(SDL_Renderer* renderer, SDL_Window* window, int* timer, std::stack<GameState*>* stateStack, TTF_Font* font, GameMap2* map) : InputPromptState(renderer,window,timer,stateStack,font, "Please enter the name of the map to save."){
+SaveMapState::SaveMapState(SDL_Renderer* renderer, SDL_Window* window, int* timer, std::stack<GameState*>* stateStack, TTF_Font* font, GameMap2* map) : InputPromptState(renderer,window,timer,stateStack,font, "Please enter the name of the map to save.", game_log){
     this->map = map;
 }
 
@@ -30,7 +30,7 @@ void SaveMapState::acceptString(){
     }
     else{
         //display error screen
-        GameState *nextState = new MessageDisplayerState(game_renderer, game_window, game_timer, game_stateStack, game_font, "You must enter a name to save.");
+        GameState *nextState = new MessageDisplayerState(game_renderer, game_window, game_timer, game_stateStack, game_font, "You must enter a name to save.", game_log);
         game_stateStack->push(nextState);
     }
    

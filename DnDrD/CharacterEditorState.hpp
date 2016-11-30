@@ -29,7 +29,7 @@ class CharacterEditorState : public GameState{
     
     bool updated = true;
 public:
-    CharacterEditorState(SDL_Renderer* renderer, SDL_Window* window, int* timer, std::stack<GameState*>* stateStack, TTF_Font* font, character* character);
+    CharacterEditorState(SDL_Renderer* renderer, SDL_Window* window, int* timer, std::stack<GameState*>* stateStack, TTF_Font* font, character* character,GameLog* game_log);
 };
 
 #endif /* CharacterEditorState_hpp */

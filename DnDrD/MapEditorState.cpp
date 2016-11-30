@@ -11,7 +11,7 @@
 #include "SaveMapState.hpp"
 #include "SetNextMapSizeState.hpp"
 
-MapEditorState::MapEditorState(SDL_Renderer* renderer, SDL_Window* window, int* timer, std::stack<GameState*>* stateStack, TTF_Font* font, GameMap2* map) : vMapState(renderer,window,timer, stateStack, font, map){
+MapEditorState::MapEditorState(SDL_Renderer* renderer, SDL_Window* window, int* timer, std::stack<GameState*>* stateStack, TTF_Font* font, GameMap2* map, GameLog* game_log) : vMapState(renderer,window,timer, stateStack, font, map, game_log){
     
 }
 void MapEditorState::handleInput(){
@@ -47,7 +47,7 @@ void MapEditorState::handleInput(){
                                     }
                                 }
                                 else{
-                                    GameState *nextState = new MessageDisplayerState(game_renderer, game_window, game_timer, game_stateStack, game_font, "Cannot go to next map because current map is not valid.");
+                                    GameState *nextState = new MessageDisplayerState(game_renderer, game_window, game_timer, game_stateStack, game_font, "Cannot go to next map because current map is not valid.", game_log);
                                     game_stateStack->push(nextState);
                                 }
                                 break;
@@ -58,7 +58,7 @@ void MapEditorState::handleInput(){
                                     game_stateStack->push(nextState);
                                 }
                                 else{
-                                    GameState *nextState = new MessageDisplayerState(game_renderer, game_window, game_timer, game_stateStack, game_font, "Cannot save map because it is not valid.");
+                                    GameState *nextState = new MessageDisplayerState(game_renderer, game_window, game_timer, game_stateStack, game_font, "Cannot save map because it is not valid.", game_log);
                                     game_stateStack->push(nextState);
                                 }
                                 break;

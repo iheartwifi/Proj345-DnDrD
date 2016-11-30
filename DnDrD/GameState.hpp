@@ -16,6 +16,7 @@
 #include <vector>
 #include <stack>
 #include "defines.h"
+#include "GameLog.hpp"
 
 //use struct to store textures. dstrect is optional
 struct textureStruct{
@@ -32,13 +33,14 @@ public:
     int* game_timer; //controls framerate
     std::stack<GameState*>* game_stateStack;
     TTF_Font* game_font;
+    GameLog* game_log;
     
     //state data
     SDL_Event state_event; //receives user input
     std::vector<textureStruct> state_textures;
     
     //constructor
-    GameState(SDL_Renderer* renderer, SDL_Window* window, int* timer, std::stack<GameState*>* stateStack, TTF_Font* font);
+    GameState(SDL_Renderer* renderer, SDL_Window* window, int* timer, std::stack<GameState*>* stateStack, TTF_Font* font, GameLog* game_log);
     //destructor, deletes only state data
     virtual ~GameState();
     

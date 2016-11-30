@@ -16,7 +16,7 @@
 
 class ItemLoaderState : public InputPromptState{
 public:
-    ItemLoaderState(SDL_Renderer* renderer, SDL_Window* window, int* timer, std::stack<GameState*>* stateStack, TTF_Font* font, int destination);
+    ItemLoaderState(SDL_Renderer* renderer, SDL_Window* window, int* timer, std::stack<GameState*>* stateStack, TTF_Font* font, int destination, GameLog* game_log);
 private:
     int destination;
     void acceptString();

@@ -9,7 +9,7 @@
 #include "CharacterPropertyChangerState.hpp"
 #include <sstream>
 
-CharacterPropertyChangerState::CharacterPropertyChangerState(SDL_Renderer* renderer, SDL_Window* window, int* timer, std::stack<GameState*>* stateStack, TTF_Font* font, std::string message, character* character, characterEditorButtons buttonPressed) : InputPromptState(renderer, window, timer, stateStack, font, message){
+CharacterPropertyChangerState::CharacterPropertyChangerState(SDL_Renderer* renderer, SDL_Window* window, int* timer, std::stack<GameState*>* stateStack, TTF_Font* font, std::string message, character* character, characterEditorButtons buttonPressed, GameLog* game_log) : InputPromptState(renderer, window, timer, stateStack, font, message, game_log){
     this->characterToedit = character;
     this->buttonPressed = buttonPressed;
 }
@@ -20,7 +20,7 @@ CharacterPropertyChangerState::~CharacterPropertyChangerState(){
 void CharacterPropertyChangerState::acceptString(){
     int temp=0;
     if(workingString == ""){
-        GameState *nextState = new MessageDisplayerState(game_renderer, game_window, game_timer, game_stateStack, game_font, "You must enter a value.");
+        GameState *nextState = new MessageDisplayerState(game_renderer, game_window, game_timer, game_stateStack, game_font, "You must enter a value.", game_log);
         game_stateStack->push(nextState);
     }
     else{

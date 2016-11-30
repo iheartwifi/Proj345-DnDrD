@@ -19,6 +19,7 @@
 		524B44E81DE7947D00042C70 /* MessageDisplayerState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 524B44E61DE7947D00042C70 /* MessageDisplayerState.cpp */; };
 		5297AF6E1DD6C61E00B8C3EF /* GameMap2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5297AF6A1DD6C61E00B8C3EF /* GameMap2.cpp */; };
 		5297AF6F1DD6C61E00B8C3EF /* GameObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5297AF6C1DD6C61E00B8C3EF /* GameObject.cpp */; };
+		529A7D751DEF6AD800FF6DC4 /* GameLog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 529A7D731DEF6AD800FF6DC4 /* GameLog.cpp */; };
 		52B1708E1DEE020E009E0658 /* ItemLoaderState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 52B1708C1DEE020E009E0658 /* ItemLoaderState.cpp */; };
 		52B170A61DEE1000009E0658 /* ItemEditorState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 52B170A41DEE1000009E0658 /* ItemEditorState.cpp */; };
 		52B170A91DEE2ADC009E0658 /* ItemPropertyChangerState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 52B170A71DEE2ADC009E0658 /* ItemPropertyChangerState.cpp */; };
@@ -78,6 +79,8 @@
 		5297AF6B1DD6C61E00B8C3EF /* GameMap2.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GameMap2.hpp; sourceTree = "<group>"; };
 		5297AF6C1DD6C61E00B8C3EF /* GameObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameObject.cpp; sourceTree = "<group>"; };
 		5297AF6D1DD6C61E00B8C3EF /* GameObject.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GameObject.hpp; sourceTree = "<group>"; };
+		529A7D731DEF6AD800FF6DC4 /* GameLog.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameLog.cpp; sourceTree = "<group>"; };
+		529A7D741DEF6AD800FF6DC4 /* GameLog.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GameLog.hpp; sourceTree = "<group>"; };
 		52B1708C1DEE020E009E0658 /* ItemLoaderState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ItemLoaderState.cpp; sourceTree = "<group>"; };
 		52B1708D1DEE020E009E0658 /* ItemLoaderState.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ItemLoaderState.hpp; sourceTree = "<group>"; };
 		52B170901DEE02FF009E0658 /* DestinationEnum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DestinationEnum.h; sourceTree = "<group>"; };
@@ -175,6 +178,7 @@
 				524B11931DE7830900E44D1A /* GameState.hpp */,
 				524B11941DE7830900E44D1A /* MainMenuState.cpp */,
 				524B11951DE7830900E44D1A /* MainMenuState.hpp */,
+				529A7D721DEF6A7F00FF6DC4 /* GameLog */,
 				529A7D6F1DEF67FE00FF6DC4 /* Item Editor */,
 				529A7D701DEF680500FF6DC4 /* Character Editor */,
 				52B1708F1DEE02E3009E0658 /* Loaders */,
@@ -217,6 +221,15 @@
 				55DC8EF31DEF451E00916552 /* CharacterEditorState.hpp */,
 			);
 			name = "Character Editor";
+			sourceTree = "<group>";
+		};
+		529A7D721DEF6A7F00FF6DC4 /* GameLog */ = {
+			isa = PBXGroup;
+			children = (
+				529A7D731DEF6AD800FF6DC4 /* GameLog.cpp */,
+				529A7D741DEF6AD800FF6DC4 /* GameLog.hpp */,
+			);
+			name = GameLog;
 			sourceTree = "<group>";
 		};
 		52B170871DEDFAB4009E0658 /* GameObjects */ = {
@@ -387,6 +400,7 @@
 				55DC8EF11DEF43FD00916552 /* CharacterLoaderState.cpp in Sources */,
 				52B1708E1DEE020E009E0658 /* ItemLoaderState.cpp in Sources */,
 				524794931DEB96F30010AAF2 /* MapLoaderState.cpp in Sources */,
+				529A7D751DEF6AD800FF6DC4 /* GameLog.cpp in Sources */,
 				55DC8EEB1DEE463E00916552 /* Dice.cpp in Sources */,
 				55DC8EE01DEE460A00916552 /* ItemContainer.cpp in Sources */,
 				55DC8EEA1DEE463E00916552 /* character.cpp in Sources */,

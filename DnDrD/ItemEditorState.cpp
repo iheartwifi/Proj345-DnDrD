@@ -11,7 +11,7 @@
 #include "ItemPropertyChangerState.hpp"
 #include <fstream>
 
-ItemEditorState::ItemEditorState(SDL_Renderer* renderer, SDL_Window* window, int* timer, std::stack<GameState*>* stateStack, TTF_Font* font, Item* item) : GameState(renderer,window,timer, stateStack, font){
+ItemEditorState::ItemEditorState(SDL_Renderer* renderer, SDL_Window* window, int* timer, std::stack<GameState*>* stateStack, TTF_Font* font, Item* item, GameLog* game_log) : GameState(renderer,window,timer, stateStack, font, game_log){
     
     itemToEdit = item;
     
@@ -276,7 +276,7 @@ void ItemEditorState::handleInput(){
                     removeSelfFromStateStack();
                 }
                 else{
-                    GameState *nextState = new MessageDisplayerState(game_renderer, game_window, game_timer, game_stateStack, game_font, "The item cannot be saved because it is not valid.");
+                    GameState *nextState = new MessageDisplayerState(game_renderer, game_window, game_timer, game_stateStack, game_font, "The item cannot be saved because it is not valid.", game_log);
                     game_stateStack->push(nextState);
                 }
             }

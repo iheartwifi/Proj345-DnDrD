@@ -28,7 +28,7 @@ class ItemEditorState : public GameState{
     
     bool updated = true;
 public:
-    ItemEditorState(SDL_Renderer* renderer, SDL_Window* window, int* timer, std::stack<GameState*>* stateStack, TTF_Font* font, Item* item);
+    ItemEditorState(SDL_Renderer* renderer, SDL_Window* window, int* timer, std::stack<GameState*>* stateStack, TTF_Font* font, Item* item, GameLog* game_log);
 };
 
 

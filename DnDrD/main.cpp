@@ -19,6 +19,8 @@
 #include "GameState.hpp"
 #include "MainMenuState.hpp"
 #include "Item.h"
+#include "GameLog.hpp"
+
 using namespace std;
 
 //---game data
@@ -27,6 +29,7 @@ SDL_Window* game_window;
 SDL_Renderer* game_renderer;
 int game_timer; //for controlling framerate
 TTF_Font* game_font;
+GameLog* game_log;
 
 //fuctions to start and stop SDL
 void initSDL();
@@ -75,10 +78,13 @@ void initSDL(){
     game_stateStack = new stack<GameState*>;
     
     //push main menu onto stack
-    game_stateStack->push(new MainMenuState(game_renderer, game_window, &game_timer, game_stateStack, game_font));
+    game_stateStack->push(new MainMenuState(game_renderer, game_window, &game_timer, game_stateStack, game_font, game_log));
     
     //set the game timer
     game_timer = SDL_GetTicks();
+    
+    //initialize the game log
+    game_log = new GameLog();
     
 }
 //Close SDL

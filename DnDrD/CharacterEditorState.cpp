@@ -8,7 +8,7 @@
 
 #include "CharacterEditorState.hpp"
 
-CharacterEditorState::CharacterEditorState(SDL_Renderer* renderer, SDL_Window* window, int* timer, std::stack<GameState*>* stateStack, TTF_Font* font, character* character) : GameState(renderer,window,timer, stateStack, font){
+CharacterEditorState::CharacterEditorState(SDL_Renderer* renderer, SDL_Window* window, int* timer, std::stack<GameState*>* stateStack, TTF_Font* font, character* character, GameLog* game_log) : GameState(renderer,window,timer, stateStack, font, game_log){
     
     characterToEdit = character;
     
@@ -173,6 +173,7 @@ CharacterEditorState::CharacterEditorState(SDL_Renderer* renderer, SDL_Window* w
     
     updateDescription();
 }
+
 std::string CharacterEditorState::descriptionToString(){
     std::string returnString = "";
     for(int i = 0; i < description.size(); i++){
@@ -180,6 +181,7 @@ std::string CharacterEditorState::descriptionToString(){
     }
     return returnString;
 }
+
 void CharacterEditorState::updateDescription(){
     //clear current description
     description.clear();
@@ -278,42 +280,42 @@ void CharacterEditorState::handleInput(){
             game_stateStack->push(nextState);*/
             switch (selection) {
                 case 1:
-                    nextState = new CharacterPropertyChangerState(game_renderer, game_window, game_timer, game_stateStack,game_font, "Please enter a name for your character.",characterToEdit, C_NAME);
+                    nextState = new CharacterPropertyChangerState(game_renderer, game_window, game_timer, game_stateStack,game_font, "Please enter a name for your character.",characterToEdit, C_NAME, game_log);
                     updated = true;
                     game_stateStack->push(nextState);
                     break;
                 case 2:
-                    nextState = new CharacterPropertyChangerState(game_renderer, game_window, game_timer, game_stateStack,game_font, "Please enter new level for your character.",characterToEdit, C_LVL);
+                    nextState = new CharacterPropertyChangerState(game_renderer, game_window, game_timer, game_stateStack,game_font, "Please enter new level for your character.",characterToEdit, C_LVL, game_log);
                     updated = true;
                     game_stateStack->push(nextState);
                     break;
                 case 3:
-                    nextState = new CharacterPropertyChangerState(game_renderer, game_window, game_timer, game_stateStack,game_font, "Please enter new value for your character's strength.",characterToEdit, C_STR);
+                    nextState = new CharacterPropertyChangerState(game_renderer, game_window, game_timer, game_stateStack,game_font, "Please enter new value for your character's strength.",characterToEdit, C_STR, game_log);
                     updated = true;
                     game_stateStack->push(nextState);
                     break;
                 case 4:
-                    nextState = new CharacterPropertyChangerState(game_renderer, game_window, game_timer, game_stateStack,game_font, "Please enter new value for your character's dexterity.",characterToEdit, C_DEX);
+                    nextState = new CharacterPropertyChangerState(game_renderer, game_window, game_timer, game_stateStack,game_font, "Please enter new value for your character's dexterity.",characterToEdit, C_DEX, game_log);
                     updated = true;
                     game_stateStack->push(nextState);
                     break;
                 case 5:
-                    nextState = new CharacterPropertyChangerState(game_renderer, game_window, game_timer, game_stateStack,game_font, "Please enter new value for your character's constitution.",characterToEdit, C_CON);
+                    nextState = new CharacterPropertyChangerState(game_renderer, game_window, game_timer, game_stateStack,game_font, "Please enter new value for your character's constitution.",characterToEdit, C_CON, game_log);
                     updated = true;
                     game_stateStack->push(nextState);
                     break;
                 case 6:
-                    nextState = new CharacterPropertyChangerState(game_renderer, game_window, game_timer, game_stateStack,game_font, "Please enter new value for your character's intelligence.",characterToEdit, C_INT);
+                    nextState = new CharacterPropertyChangerState(game_renderer, game_window, game_timer, game_stateStack,game_font, "Please enter new value for your character's intelligence.",characterToEdit, C_INT, game_log);
                     updated = true;
                     game_stateStack->push(nextState);
                     break;
                 case 7:
-                    nextState = new CharacterPropertyChangerState(game_renderer, game_window, game_timer, game_stateStack,game_font, "Please enter new value for your character's wisdom.",characterToEdit, C_WIS);
+                    nextState = new CharacterPropertyChangerState(game_renderer, game_window, game_timer, game_stateStack,game_font, "Please enter new value for your character's wisdom.",characterToEdit, C_WIS, game_log);
                     updated = true;
                     game_stateStack->push(nextState);
                     break;
                 case 8:
-                    nextState = new CharacterPropertyChangerState(game_renderer, game_window, game_timer, game_stateStack,game_font, "Please enter new value for your character's charisma.",characterToEdit, C_CHA);
+                    nextState = new CharacterPropertyChangerState(game_renderer, game_window, game_timer, game_stateStack,game_font, "Please enter new value for your character's charisma.",characterToEdit, C_CHA, game_log);
                     updated = true;
                     game_stateStack->push(nextState);
                     break;

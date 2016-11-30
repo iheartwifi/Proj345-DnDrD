@@ -9,8 +9,8 @@
 #include "InputPromptState.hpp"
 int InputPromptState::numberInitialized  = 0;
 
-InputPromptState::InputPromptState(SDL_Renderer* renderer, SDL_Window* window, int* timer, std::stack<GameState*>* stateStack, TTF_Font* font, std::string message) :
-MessageDisplayerState(renderer, window, timer, stateStack, font, message){
+InputPromptState::InputPromptState(SDL_Renderer* renderer, SDL_Window* window, int* timer, std::stack<GameState*>* stateStack, TTF_Font* font, std::string message, GameLog* game_log) :
+MessageDisplayerState(renderer, window, timer, stateStack, font, message, game_log){
     this->workingString = "";
     SDL_StartTextInput();
     numberInitialized++;

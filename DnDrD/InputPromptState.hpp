@@ -19,7 +19,7 @@ public:
     std::string workingString;
     static int numberInitialized;
     
-    InputPromptState(SDL_Renderer* renderer, SDL_Window* window, int* timer, std::stack<GameState*>* stateStack, TTF_Font* font, std::string message);
+    InputPromptState(SDL_Renderer* renderer, SDL_Window* window, int* timer, std::stack<GameState*>* stateStack, TTF_Font* font, std::string message, GameLog* game_log);
     ~InputPromptState();
     void handleInput();
     void render();

@@ -15,7 +15,7 @@
 
 class PlayGameState : public vMapState{
 public:
-    PlayGameState(SDL_Renderer* renderer, SDL_Window* window, int* timer, std::stack<GameState*>* stateStack, TTF_Font* font, GameMap2* map);
+    PlayGameState(SDL_Renderer* renderer, SDL_Window* window, int* timer, std::stack<GameState*>* stateStack, TTF_Font* font, GameMap2* map, GameLog* game_log);
     void handleInput();
     void render();
     

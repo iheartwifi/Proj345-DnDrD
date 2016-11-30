@@ -86,4 +86,6 @@
 #define PATH_TO_ITEM_EDITOR_ATK "item_editor_buttons/change_atk.png"
 #define PATH_TO_ITEM_EDITOR_SAVE "item_editor_buttons/save_exit.png"
 
+#define MAX_LOG_ENTRIES_SHOWN 10
+
 #endif /* defines_h */

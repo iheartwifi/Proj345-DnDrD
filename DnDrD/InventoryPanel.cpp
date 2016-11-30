@@ -123,6 +123,7 @@ bool InventoryPanel::validateIP()
 
 void InventoryPanel::loadContainer(string filename)
 {
+    v_items.clear();
     string buffer, itemname;
     Item it;
     ifstream load;

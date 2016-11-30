@@ -8,7 +8,7 @@
 
 #include "MessageDisplayerState.hpp"
 
-MessageDisplayerState::MessageDisplayerState(SDL_Renderer* renderer, SDL_Window* window, int* timer, std::stack<GameState*>* stateStack, TTF_Font* font, std::string message) : GameState(renderer, window, timer, stateStack, font){
+MessageDisplayerState::MessageDisplayerState(SDL_Renderer* renderer, SDL_Window* window, int* timer, std::stack<GameState*>* stateStack, TTF_Font* font, std::string message, GameLog* game_log) : GameState(renderer, window, timer, stateStack, font, game_log){
     
     this->game_font = font;
     this->messageToDisplay = message;

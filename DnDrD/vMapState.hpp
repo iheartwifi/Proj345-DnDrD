@@ -16,7 +16,7 @@
 
 class vMapState : public GameState{
 public:
-    vMapState(SDL_Renderer* renderer, SDL_Window* window, int* timer, std::stack<GameState*>* stateStack, TTF_Font* font, GameMap2* map);
+    vMapState(SDL_Renderer* renderer, SDL_Window* window, int* timer, std::stack<GameState*>* stateStack, TTF_Font* font, GameMap2* map, GameLog* game_log);
     ~vMapState();
     virtual void handleInput() = 0;
     void render();
