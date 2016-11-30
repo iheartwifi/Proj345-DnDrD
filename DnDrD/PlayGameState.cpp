@@ -107,12 +107,17 @@ void PlayGameState::moveHero(Orientation direction){
     if(!state_map->getBlock(nextBlock)->canMoveInto()){
         return;
     }
-    
-    //set current block to empty
-    state_map->deOccupyBlock(state_hero->getLocationInMap());
-    //move character to next block
-    state_map->occupyBlock(nextBlock, state_hero);
-    
-    
+    else{
+        if(state_map->getBlock(nextBlock)->getMapType() ==MAP_END)
+        {
+            //do something
+        }
+        else{
+            //set current block to empty
+            state_map->deOccupyBlock(state_hero->getLocationInMap());
+            //move character to next block
+            state_map->occupyBlock(nextBlock, state_hero); 
+        }
+    }
     
 }

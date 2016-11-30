@@ -17,7 +17,7 @@ ItemLoaderState::ItemLoaderState(SDL_Renderer* renderer, SDL_Window* window, int
 
 void ItemLoaderState::acceptString(){
     if(workingString.length() > 0){
-        Item* i;
+        Item* i = new Item;
         
         if(workingString == "new"){
             i = new Item();

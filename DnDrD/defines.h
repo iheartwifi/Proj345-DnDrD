@@ -18,6 +18,9 @@
 #define NUMBER_BLOCKS_DISPLAYED_Y 15
 #define NUMBER_BLOCKS_DISPLAYED_X 25
 
+//default can be changed
+#define characterDefaultValue 0
+
 //size of each block
 #define BLOCK_SIZE 50
 

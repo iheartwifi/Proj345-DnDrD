@@ -80,40 +80,38 @@ void MapEditorState::handleInput(){
             
             //if a selection is made, determine if a map was pressed
             if(AddSelection != 0){
-                if(checkIfInside(SDL_Rect{0,0,WINDOW_WIDTH, WINDOW_HEIGHT-TOOLBAR_PANE_HEIGHT}, mouseX, mouseY)){
-                    for(int r = 0; r < state_map->getArrayDimensions().y; r++){
-                        for(int c = 0; c < state_map->getArrayDimensions().x; c++){
-                            if(checkIfInside(state_map->getBlock(c, r)->dstrect, mouseX, mouseY)){
-                                switch (AddSelection) {
-                                    case 1:
-                                        state_map->fillcell(Coordinate{c,r}, STONE);
-                                        break;
-                                    case 2:
-                                        state_map->fillcell(Coordinate{c,r}, GRASS);
-                                        break;
-                                    case 3:
-                                        state_map->fillcell(Coordinate{c,r}, WALL);
-                                        break;
-                                    case 4:
-                                        state_map->fillcell(Coordinate{c,r}, WATER);
-                                        break;
-                                    case 5:
-                                        //set startblock
-                                        if(state_map->getBlock(c, r)->canMoveInto()){
-                                            state_map->setStartingBlock(Coordinate{c,r});
-                                        }
-                                        break;
-                                    case 6:
-                                        //set endblock
-                                        state_map->setEndingBlock(Coordinate{c,r});
-                                        break;
-                                    case 7:
-                                        //TODO: allow item to load
-                                    case 8:
-                                        //TODO: allow character to load
-                                    default:
-                                        break;
-                                }
+                for(int r = 0; r < state_map->getArrayDimensions().y; r++){
+                    for(int c = 0; c < state_map->getArrayDimensions().x; c++){
+                        if(checkIfInside(state_map->getBlock(c, r)->dstrect, mouseX, mouseY)){
+                            switch (AddSelection) {
+                                case 1:
+                                    state_map->fillcell(Coordinate{c,r}, STONE);
+                                    break;
+                                case 2:
+                                    state_map->fillcell(Coordinate{c,r}, GRASS);
+                                    break;
+                                case 3:
+                                    state_map->fillcell(Coordinate{c,r}, WALL);
+                                    break;
+                                case 4:
+                                    state_map->fillcell(Coordinate{c,r}, WATER);
+                                    break;
+                                case 5:
+                                    //set startblock
+                                    if(state_map->getBlock(c, r)->canMoveInto()){
+                                        state_map->setStartingBlock(Coordinate{c,r});
+                                    }
+                                    break;
+                                case 6:
+                                    //set endblock
+                                    state_map->setEndingBlock(Coordinate{c,r});
+                                    break;
+                                case 7:
+                                    //TODO: allow item to load
+                                case 8:
+                                    //TODO: allow character to load
+                                default:
+                                    break;
                             }
                         }
                     }

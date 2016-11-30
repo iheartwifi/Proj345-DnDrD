@@ -14,6 +14,7 @@
 #include "SetNewMapSizeState.hpp"
 #include "MapLoaderState.hpp"
 #include "ItemLoaderState.hpp"
+#include "CharacterLoaderState.hpp"
 
 MainMenuState::MainMenuState(SDL_Renderer* renderer, SDL_Window* window, int* timer, std::stack<GameState*>* stateStack, TTF_Font* font) : GameState(renderer,window,timer, stateStack, font){
     SDL_Surface*  addSurface = NULL;
@@ -136,8 +137,7 @@ void MainMenuState::handleInput(){
                     break;
                 case 3:
                     //TODO: add character editor
-                    
-                    nextState = new MessageDisplayerState(game_renderer, game_window, game_timer, game_stateStack, game_font, "Example Message: The map file given was either not found or was invalid.");
+                    nextState = new CharacterLoaderState(game_renderer, game_window, game_timer, game_stateStack, game_font, CHAR_EDITOR);
                     game_stateStack->push(nextState);
                     break;
                 case 4:

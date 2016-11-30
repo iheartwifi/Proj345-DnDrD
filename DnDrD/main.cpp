@@ -14,10 +14,11 @@
 #include "SDL2/SDL.h"
 #include "SDL2_image/SDL_image.h"
 #include "SDL2_ttf/SDL_ttf.h"
-
+#include "NPC.hpp"
+#include "Hero.hpp"
 #include "GameState.hpp"
 #include "MainMenuState.hpp"
-
+#include "Item.h"
 using namespace std;
 
 //---game data
@@ -32,12 +33,11 @@ void initSDL();
 void closeSDL();
 
 int main(int argc, const char * argv[]) {
-    
     initSDL();
+        
     while(!game_stateStack->empty()){
         
         game_stateStack->top()->run();
-        
     }
     
     closeSDL();
