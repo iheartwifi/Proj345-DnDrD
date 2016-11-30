@@ -1,0 +1,1 @@
+c testHero2 defaultForNPC 44 36 1 23 24 28 18 16 19 0 2 1

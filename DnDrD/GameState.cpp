@@ -8,11 +8,12 @@
 
 #include "GameState.hpp"
 
-GameState::GameState(SDL_Renderer* renderer, SDL_Window* window, int* timer, std::stack<GameState*>* stateStack){
+GameState::GameState(SDL_Renderer* renderer, SDL_Window* window, int* timer, std::stack<GameState*>* stateStack, TTF_Font* font){
     this->game_renderer = renderer;
     this->game_window = window;
     this->game_timer = timer;
     this->game_stateStack = stateStack;
+    this->game_font = font;
 }
 GameState::~GameState(){
     //delete textures
@@ -23,23 +24,42 @@ GameState::~GameState(){
 }
 
 void GameState::run(){
-    //limit frame rate to FRAME_RATE
-    if ( (SDL_GetTicks() - *game_timer) >= FRAME_RATE )
-    {
-        this->handleInput();
-        this->render();
-        
-        *game_timer = SDL_GetTicks();
+   
+    this->handleInput();
+    
+    extraPreRenderLogic();
+    if(!readyToDie){
+        //limit frame rate to FRAME_RATE
+        if ( (SDL_GetTicks() - *game_timer) >= FRAME_RATE )
+        {
+            this->render();
+            
+            *game_timer = SDL_GetTicks();
+        }
+        else{
+            //Wait remaining time
+            SDL_Delay( FRAME_RATE - (SDL_GetTicks() - *game_timer) + 1 );
+        }
     }
     else{
-        //Wait remaining time
-        SDL_Delay( FRAME_RATE - (SDL_GetTicks() - *game_timer) + 1 );
+        delete this;
     }
+    
+}
+
+void GameState::extraPreRenderLogic(){
+    //do nothing
+}
+
+void GameState::removeSelfFromStateStack(){
+    //pop self off stack
+    game_stateStack->pop();
+    readyToDie = true;
 }
 
 void GameState::endGame(){
     while(!game_stateStack->empty()){
-        game_stateStack->pop();
+        game_stateStack->top()->removeSelfFromStateStack();
     }
 }
 

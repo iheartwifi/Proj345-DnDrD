@@ -13,7 +13,7 @@
 
 class MainMenuState : public GameState{
 public:
-    MainMenuState(SDL_Renderer* renderer, SDL_Window* window, int* timer, std::stack<GameState*>* stateStack);
+    MainMenuState(SDL_Renderer* renderer, SDL_Window* window, int* timer, std::stack<GameState*>* stateStack, TTF_Font* font);
     ~MainMenuState();
     void handleInput();
     void render();

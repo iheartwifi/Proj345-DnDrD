@@ -232,6 +232,16 @@ bool GameMap2::isOccupied(Coordinate block){
 
 //add or remove a gameObject froma block
 void GameMap2::occupyBlock(Coordinate block, GameObject *obj){
+    //remove object from old block if already on map
+    for(int c = 0; c < arrayDimensions.x; c++){
+        for(int r = 0; r < arrayDimensions.y; r++){
+            if(this->getBlock(c, r)->getContainedItem() == obj){
+                deOccupyBlock(Coordinate {c,r});
+            }
+        }
+    }
+    
+    //add object to block
     this->getBlock(block)->setContainedItem(obj);
     obj->setLocationInMap(block);
 }
@@ -255,8 +265,8 @@ void GameMap2::BlockData::setVisited(){
 //does prepwork before calling validatePathHelper() which checks the path recursively
 bool GameMap2::validatePath(Coordinate a, Coordinate b){
     //reset v
-    for(int c = 0; c < arrayDimensions.y; c++){
-        for(int r = 0; r < arrayDimensions.x; r++){
+    for(int c = 0; c < arrayDimensions.x; c++){
+        for(int r = 0; r < arrayDimensions.y; r++){
             getBlock(c, r)->resetV();
         }
     }
@@ -347,7 +357,7 @@ std::ostream &operator<<(std::ostream& out, GameMap2 const& gm){
     //
     for(int c = 0; c < gm.arrayDimensions.x; c++){
         for(int r = 0; r < gm.arrayDimensions.y; r++){
-            out << *gm.getBlock(r, c) << std::endl;
+            out << *gm.getBlock(c, r) << std::endl;
         }
     }
     //

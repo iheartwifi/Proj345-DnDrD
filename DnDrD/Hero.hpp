@@ -11,6 +11,8 @@
 
 #include <stdio.h>
 #include "GameMap2.hpp"
+#include "character.hpp"
+#include "ItemContainer.h"
 
 enum Orientation{
     ORIENTATION_LEFT,
@@ -19,13 +21,21 @@ enum Orientation{
     ORIENTATION_UP
 };
 
-class Hero : public GameObject{ //TODO: define virtual destructor
+enum Herotype{
+    Bully,//Strength, Constitution, Dexterity, Intelligence, Charisma, Wisdom
+    Nimble,//Dexterity, Constitution, Strength, Intelligence, Charisma, Wisdom
+    Tank//Constitution, Dexterity, Strength, Intelligence, Charisma, Wisdom
+};
+
+class Hero : public GameObject,public character{ //TODO: define virtual destructor
 private:
     int moveCounter;
     int orientation;
+    Herotype typrOfHero;
 public:
     //constructors
     Hero();
+    Hero(Herotype a,string name);
     //destructor
     virtual ~Hero();
     
@@ -36,6 +46,9 @@ public:
     //getter and setter for orientation
     int getOrientation();
     void setOrientation(int o);
+
+    void editCharacter(int type);
+
 };
 
 

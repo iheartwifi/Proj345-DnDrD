@@ -8,7 +8,7 @@
 
 #include "PlayGameState.hpp"
 
-PlayGameState::PlayGameState(SDL_Renderer* renderer, SDL_Window* window, int* timer, std::stack<GameState*>* stateStack) : vMapState(renderer,window,timer, stateStack){
+PlayGameState::PlayGameState(SDL_Renderer* renderer, SDL_Window* window, int* timer, std::stack<GameState*>* stateStack, TTF_Font* font, GameMap2* map) : vMapState(renderer,window,timer, stateStack, font, map){
     
 }
 void PlayGameState::handleInput(){
@@ -31,10 +31,7 @@ void PlayGameState::handleInput(){
         if(state_event.type == SDL_KEYDOWN){
             switch (state_event.key.keysym.sym) {
                 case SDLK_ESCAPE:
-                    //pop self off stack
-                    game_stateStack->pop();
-                    
-                    //TODO:  fix memory leak here: delete this;
+                    removeSelfFromStateStack();
                     break;
                 case SDLK_UP:
                     shiftMap(ORIENTATION_DOWN);
@@ -110,12 +107,17 @@ void PlayGameState::moveHero(Orientation direction){
     if(!state_map->getBlock(nextBlock)->canMoveInto()){
         return;
     }
-    
-    //set current block to empty
-    state_map->deOccupyBlock(state_hero->getLocationInMap());
-    //move character to next block
-    state_map->occupyBlock(nextBlock, state_hero);
-    
-    
+    else{
+        if(state_map->getBlock(nextBlock)->getMapType() ==MAP_END)
+        {
+            //do something
+        }
+        else{
+            //set current block to empty
+            state_map->deOccupyBlock(state_hero->getLocationInMap());
+            //move character to next block
+            state_map->occupyBlock(nextBlock, state_hero); 
+        }
+    }
     
 }

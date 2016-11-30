@@ -13,31 +13,31 @@
 #include "defines.h"
 #include "SDL2/SDL.h"
 #include "SDL2_image/SDL_image.h"
-
+#include "SDL2_ttf/SDL_ttf.h"
+#include "NPC.hpp"
+#include "Hero.hpp"
 #include "GameState.hpp"
 #include "MainMenuState.hpp"
-
+#include "Item.h"
 using namespace std;
-
-
 
 //---game data
 stack<GameState*>* game_stateStack;
 SDL_Window* game_window;
 SDL_Renderer* game_renderer;
 int game_timer; //for controlling framerate
+TTF_Font* game_font;
 
 //fuctions to start and stop SDL
 void initSDL();
 void closeSDL();
 
 int main(int argc, const char * argv[]) {
-    
     initSDL();
+        
     while(!game_stateStack->empty()){
         
         game_stateStack->top()->run();
-        
     }
     
     closeSDL();
@@ -51,6 +51,13 @@ void initSDL(){
     if (  SDL_Init( SDL_INIT_VIDEO | SDL_INIT_TIMER)  < 0){
         cerr << "Error in Init(). Could not initialize SDL." << endl;
     }
+    
+    //Initialize SDL_ttf
+    if( TTF_Init() == -1 )
+    {
+        cerr << "SDL_ttf could not initialize! SDL_ttf Error: " << TTF_GetError() << endl;
+    }
+    game_font = TTF_OpenFont(PATH_TO_FONT, FONT_SIZE);
     
     //create game window
     game_window = SDL_CreateWindow(WINDOW_NAME, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, WINDOW_WIDTH, WINDOW_HEIGHT, SDL_WINDOW_SHOWN);
@@ -68,7 +75,7 @@ void initSDL(){
     game_stateStack = new stack<GameState*>;
     
     //push main menu onto stack
-    game_stateStack->push(new MainMenuState(game_renderer, game_window, &game_timer, game_stateStack));
+    game_stateStack->push(new MainMenuState(game_renderer, game_window, &game_timer, game_stateStack, game_font));
     
     //set the game timer
     game_timer = SDL_GetTicks();
@@ -84,50 +91,3 @@ void closeSDL(){
     //Quit SDL
     SDL_Quit();
 }
-
-
-////render the mapEditor
-//void mapEditor(){
-//    //if game_currentTextures is not initialized
-//    if(game_currentTextures.empty()){
-//        //remove current method from state stack
-//        game_stateStack.pop();
-//
-//        //add initialization method to state stack
-//        stateStruct state;
-//        state.stateMethod = mapEditorInit;
-//        game_stateStack.push(state);
-//
-//        //break to initialize. Will return
-//        return;
-//    }
-//    //limit frame rate to FRAME_RATE
-//    if ( (SDL_GetTicks() - game_timer) >= FRAME_RATE )
-//    {
-//        mapEditorInputHandler();
-//        //ALL RENDERING CODE TAKES PLACE IN HERE
-//        {
-//            renderMap();
-//
-//            SDL_Rect dstrect = {0,0,0,0};
-//            SDL_Rect srcrect = {0,0,0,0};
-//            for(int i = 2; i < 6;i++){
-//                srcrect = game_currentTextures[i].srcrect;
-//                dstrect = {BLOCK_SIZE * (i-2),WINDOW_HEIGHT-TOOLBAR_PANE_HEIGHT,BLOCK_SIZE,BLOCK_SIZE};
-//                SDL_RenderCopy(renderer, game_currentTextures[i].texture, &srcrect, &dstrect);
-//            }
-//
-//        }
-//        //DO NOT PUT MORE CODE PAST HERE
-//
-//        SDL_RenderPresent(renderer);
-//        SDL_RenderClear(renderer);
-//
-//        //part of framerate limiter
-//        game_timer = SDL_GetTicks();
-//    }
-//    else{
-//        //Wait remaining time
-//        SDL_Delay( FRAME_RATE - (SDL_GetTicks() - game_timer) + 1 );
-//    }
-//}

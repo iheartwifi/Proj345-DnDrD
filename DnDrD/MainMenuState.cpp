@@ -9,8 +9,14 @@
 #include "MainMenuState.hpp"
 #include "PlayGameState.hpp"
 #include "MapEditorState.hpp"
+#include "MessageDisplayerState.hpp"
+#include "InputPromptState.hpp"
+#include "SetNewMapSizeState.hpp"
+#include "MapLoaderState.hpp"
+#include "ItemLoaderState.hpp"
+#include "CharacterLoaderState.hpp"
 
-MainMenuState::MainMenuState(SDL_Renderer* renderer, SDL_Window* window, int* timer, std::stack<GameState*>* stateStack) : GameState(renderer,window,timer, stateStack){
+MainMenuState::MainMenuState(SDL_Renderer* renderer, SDL_Window* window, int* timer, std::stack<GameState*>* stateStack, TTF_Font* font) : GameState(renderer,window,timer, stateStack, font){
     SDL_Surface*  addSurface = NULL;
     SDL_Rect dstrect = {0,0,0,0};
     SDL_Rect srcrect = {0,0,0,0};
@@ -20,52 +26,77 @@ MainMenuState::MainMenuState(SDL_Renderer* renderer, SDL_Window* window, int* ti
     //add textures to currentTextures one at a time
     {
         //background image
-        addSurface = IMG_Load("background.jpg");
+        addSurface = IMG_Load(PATH_TO_BACKGROUND);
         addStruct.dstrect = {0,0,WINDOW_WIDTH,WINDOW_HEIGHT};
         addStruct.srcrect = {0,0,addSurface->w,addSurface->h};
         addStruct.texture = SDL_CreateTextureFromSurface(game_renderer, addSurface);
+        SDL_FreeSurface(addSurface);
         
         state_textures.push_back(addStruct);
         
         //load buttons
         int i = 0;
         //new game button
-        addSurface = IMG_Load("menu_buttons/main_newgame.png");
+        addSurface = IMG_Load(PATH_TO_MAIN_MENU_BUTTON_NEW_GAME);
         addStruct.dstrect = {WINDOW_WIDTH/2 - MENU_BUTTON_WIDTH/2,
             MENU_BUTTON_Y_OFFSET + (MENU_BUTTON_HEIGHT+MENU_BUTTON_SPACING)*i++,
             MENU_BUTTON_WIDTH,
             MENU_BUTTON_HEIGHT};
         addStruct.srcrect = {0,0, addSurface->w, addSurface->h};
         addStruct.texture = SDL_CreateTextureFromSurface(game_renderer, addSurface);
-
+        SDL_FreeSurface(addSurface);
+        
         state_textures.push_back(addStruct);
         
         //map editor button
-        //new game button
-        addSurface = IMG_Load("menu_buttons/main_mapeditor.png");
+        addSurface = IMG_Load(PATH_TO_MAIN_MENU_BUTTON_MAP_EDITOR);
         addStruct.dstrect = {WINDOW_WIDTH/2 - MENU_BUTTON_WIDTH/2,
             MENU_BUTTON_Y_OFFSET + (MENU_BUTTON_HEIGHT+MENU_BUTTON_SPACING)*i++,
             MENU_BUTTON_WIDTH,
             MENU_BUTTON_HEIGHT};
         addStruct.srcrect = {0,0, addSurface->w, addSurface->h};
         addStruct.texture = SDL_CreateTextureFromSurface(game_renderer, addSurface);
+        SDL_FreeSurface(addSurface);
+        
+        state_textures.push_back(addStruct);
+        
+        //character editor button
+        addSurface = IMG_Load(PATH_TO_MAIN_MENU_BUTTON_CHARACTER_EDITOR);
+        addStruct.dstrect = {WINDOW_WIDTH/2 - MENU_BUTTON_WIDTH/2,
+            MENU_BUTTON_Y_OFFSET + (MENU_BUTTON_HEIGHT+MENU_BUTTON_SPACING)*i++,
+            MENU_BUTTON_WIDTH,
+            MENU_BUTTON_HEIGHT};
+        addStruct.srcrect = {0,0, addSurface->w, addSurface->h};
+        addStruct.texture = SDL_CreateTextureFromSurface(game_renderer, addSurface);
+        SDL_FreeSurface(addSurface);
+        
+        state_textures.push_back(addStruct);
+        
+        //item editor button
+        addSurface = IMG_Load(PATH_TO_MAIN_MENU_BUTTON_ITEM_EDITOR);
+        addStruct.dstrect = {WINDOW_WIDTH/2 - MENU_BUTTON_WIDTH/2,
+            MENU_BUTTON_Y_OFFSET + (MENU_BUTTON_HEIGHT+MENU_BUTTON_SPACING)*i++,
+            MENU_BUTTON_WIDTH,
+            MENU_BUTTON_HEIGHT};
+        addStruct.srcrect = {0,0, addSurface->w, addSurface->h};
+        addStruct.texture = SDL_CreateTextureFromSurface(game_renderer, addSurface);
+        SDL_FreeSurface(addSurface);
         
         state_textures.push_back(addStruct);
         
         //exit button
-        //new game button
-        addSurface = IMG_Load("menu_buttons/main_exit.png");
+        addSurface = IMG_Load(PATH_TO_MAIN_MENU_BUTTON_EXIT);
         addStruct.dstrect = {WINDOW_WIDTH/2 - MENU_BUTTON_WIDTH/2,
             MENU_BUTTON_Y_OFFSET + (MENU_BUTTON_HEIGHT+MENU_BUTTON_SPACING)*i++,
             MENU_BUTTON_WIDTH,
             MENU_BUTTON_HEIGHT};
         addStruct.srcrect = {0,0, addSurface->w, addSurface->h};
         addStruct.texture = SDL_CreateTextureFromSurface(game_renderer, addSurface);
+        SDL_FreeSurface(addSurface);
         
         state_textures.push_back(addStruct);
+        
     }
-    
-    SDL_FreeSurface(addSurface);
 }
 MainMenuState::~MainMenuState(){
     //uses GameState destructor
@@ -97,15 +128,26 @@ void MainMenuState::handleInput(){
             GameState* nextState = NULL;
             switch (selection) {
                 case 1:
-                    nextState = new PlayGameState(game_renderer,game_window,game_timer,game_stateStack);
+                    nextState = new MapLoaderState(game_renderer,game_window,game_timer,game_stateStack, game_font, PLAY_GAME);
                     game_stateStack->push(nextState);
                     break;
                 case 2:
-                    nextState = new MapEditorState(game_renderer,game_window,game_timer,game_stateStack);
+                    nextState = new MapLoaderState(game_renderer, game_window, game_timer, game_stateStack, game_font, MAP_EDITOR);
                     game_stateStack->push(nextState);
                     break;
                 case 3:
+                    //TODO: add character editor
+                    nextState = new CharacterLoaderState(game_renderer, game_window, game_timer, game_stateStack, game_font, CHAR_EDITOR);
+                    game_stateStack->push(nextState);
+                    break;
+                case 4:
+                    nextState = new ItemLoaderState(game_renderer, game_window, game_timer, game_stateStack, game_font, ITEM_EDITOR);
+                    game_stateStack->push(nextState);
+                    break;
+                case 5:
                     endGame();
+                    break;
+                default:
                     break;
             }
         }
@@ -113,11 +155,7 @@ void MainMenuState::handleInput(){
         if(state_event.type == SDL_KEYDOWN){
             switch (state_event.key.keysym.sym) {
                 case SDLK_ESCAPE:
-                    //pop self off stack
-                    game_stateStack->pop();
-                    
-                    //delete this;
-                    
+                    removeSelfFromStateStack();
                     break;
                 default:
                     break;

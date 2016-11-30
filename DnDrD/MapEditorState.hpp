@@ -13,8 +13,12 @@
 #include "vMapState.hpp"
 
 class MapEditorState : public vMapState{
+private:
+    int AddSelection = 0;
+    GameObject* addObject = nullptr;
+    
 public:
-    MapEditorState(SDL_Renderer* renderer, SDL_Window* window, int* timer, std::stack<GameState*>* stateStack);
+    MapEditorState(SDL_Renderer* renderer, SDL_Window* window, int* timer, std::stack<GameState*>* stateStack, TTF_Font* font, GameMap2* map);
     void handleInput();
     void render();
 };

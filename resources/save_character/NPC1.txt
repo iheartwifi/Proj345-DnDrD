@@ -1,0 +1,1 @@
+C  NPC1 defaultForNPC 20 18 2 1 11 4 12 8 5 11 0 1 1

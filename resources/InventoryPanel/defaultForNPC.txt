@@ -1,0 +1,8 @@
+defaultForNPC
+helmet
+armor
+ring
+belt
+boots
+weapon
+shield
