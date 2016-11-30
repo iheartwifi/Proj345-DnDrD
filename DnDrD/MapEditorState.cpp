@@ -153,7 +153,11 @@ void MapEditorState::render(){
     }
     
     //render hero at starting block
-    SDL_RenderCopy(game_renderer, state_textures[0].texture, &state_textures[0].srcrect, &state_map->getBlock(state_map->getStartingBlock())->dstrect );
+    if(checkIfInside(SDL_Rect{0,0,WINDOW_WIDTH,WINDOW_HEIGHT-TOOLBAR_PANE_HEIGHT}, state_map->getBlock(state_map->getStartingBlock())->dstrect.x, state_map->getBlock(state_map->getStartingBlock())->dstrect.y+1)){
+        
+        SDL_RenderCopy(game_renderer, state_textures[0].texture, &state_textures[0].srcrect, &state_map->getBlock(state_map->getStartingBlock())->dstrect );
+    }
+    
     
     SDL_RenderPresent(game_renderer);
     SDL_RenderClear(game_renderer);
